@@ -51,8 +51,8 @@ public class ItemStorageImplInMemory implements ItemStorage {
         log.info("Запрос на поиск вещи с id " + id + " обработан");
         return items.stream()
                 .filter(e -> e.getId() == id)
-                .findAny().
-                orElseThrow(() -> new ValidationException("Товар с id " + id + " не зарегестрирован"));
+                .findAny()
+                .orElseThrow(() -> new ValidationException("Товар с id " + id + " не зарегестрирован"));
     }
 
     @Override
