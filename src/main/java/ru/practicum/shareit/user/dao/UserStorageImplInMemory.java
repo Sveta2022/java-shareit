@@ -9,7 +9,7 @@ import ru.practicum.shareit.exception.NotFoundObjectException;
 import ru.practicum.shareit.user.model.User;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 @Repository
 @Slf4j
