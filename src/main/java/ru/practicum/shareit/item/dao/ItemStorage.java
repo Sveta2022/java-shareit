@@ -7,15 +7,15 @@ import ru.practicum.shareit.user.model.User;
 import java.util.List;
 
 public interface ItemStorage {
-    Item create(User user, Item item);
+    Item save(User userId, Item item);
 
     List<Item> getAll(Long userId);
 
     Item getById(Long id);
 
-    Item update(Item itemold, Item itemNew, User user);
+    Item update(Item itemNew);
 
-    void delete(Item item);
+    void delete(Long id);
 
     List<Item> search(String text);
 }

@@ -9,6 +9,7 @@ import ru.practicum.shareit.exception.NotFoundObjectException;
 import ru.practicum.shareit.user.model.User;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 @Slf4j
@@ -16,53 +17,45 @@ import java.util.*;
 @RequiredArgsConstructor
 @Getter
 public class UserStorageImplInMemory implements UserStorage {
-
-    private final List<User> users = new ArrayList<>();
+    private final Map<Long, User> users = new HashMap<>();
     private Long idGenerator = 0L;
 
     @Override
     public User save(User user) {
-        if (users != null) {
-            for (User userNew : users) {
-                if (userNew.getId() > idGenerator) {
-                    idGenerator = userNew.getId();
-                }
-            }
-        }
         idGenerator++;
         user.setId(idGenerator);
-        users.add(user);
+        users.put(idGenerator, user);
         log.info("Запрос на добавление пользователя c id " + user.getId() + " обработан");
         return user;
     }
 
     @Override
-    public User update(User userOld, User userNew) {
-        userNew.setId(userOld.getId());
-        users.remove(userOld);
-        users.add(userNew);
+    public User update(User userNew) {
+
+        users.put(userNew.getId(), userNew);
         log.info("Запрос на обновление пользователя c id " + userNew.getId() + " обработан");
         return userNew;
     }
 
     @Override
     public User getById(long id) {
+        User user = users.get(id);
+        if (user == null) {
+            throw new NotFoundObjectException("Пользователя с id " + id + " не зарегестрирован");
+        }
         log.info("Запрос на поиск пользователя c id " + id + " обработан");
-        return users.stream()
-                .filter(e -> e.getId() == id)
-                .findAny()
-                .orElseThrow(() -> new NotFoundObjectException("Пользователя с id " + id + " не зарегестрирован"));
+        return user;
     }
 
     @Override
-    public void delete(User user) {
-        log.info("Запрос на удаление пользователя c id " + user.getId() + " обработан");
-        users.remove(user);
+    public void delete(Long id) {
+        log.info("Запрос на удаление пользователя c id " + id + " обработан");
+        users.remove(id);
     }
 
     @Override
     public List<User> getAll() {
         log.info("Запрос на получение списка пользователей обработан");
-        return users;
+        return new ArrayList<>(users.values());
     }
 }

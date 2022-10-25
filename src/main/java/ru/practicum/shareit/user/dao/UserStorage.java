@@ -9,11 +9,11 @@ import java.util.List;
 public interface UserStorage {
     User save(User user);
 
-    User update(User userOld, User userNew);
+    User update(User userNew);
 
     User getById(long id);
 
-    void delete(User user);
+    void delete(Long id);
 
     List<User> getAll();
 }

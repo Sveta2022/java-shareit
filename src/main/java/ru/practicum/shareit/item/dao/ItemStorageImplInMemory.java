@@ -8,9 +8,8 @@ import ru.practicum.shareit.exception.ValidationException;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
 
-import java.util.ArrayList;
+import java.util.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -18,30 +17,23 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Repository
 public class ItemStorageImplInMemory implements ItemStorage {
-    private List<Item> items = new ArrayList<>();
+    private Map<Long, Item> items = new HashMap<>();
     private Long idGenerator = 0L;
 
     @Override
-    public Item create(User user, Item item) {
-        if (items != null) {
-            for (Item itemNew : items) {
-                if (itemNew.getId() > idGenerator) {
-                    idGenerator = itemNew.getId();
-                }
-            }
-        }
+    public Item save(User user, Item item) {
         idGenerator++;
-        item.setId(idGenerator);
         item.setOwner(user);
-        items.add(item);
+        item.setId(idGenerator);
+        items.put(idGenerator, item);
         log.info("Запрос на создание вещи с id " + item.getId() + " обработан");
         return item;
     }
 
     @Override
     public List<Item> getAll(Long userId) {
-        log.info("Список вещей обработан");
-        return items.stream()
+        log.info("Запрос на получить список вещей обработан");
+        return items.values().stream()
                 .filter(item -> item.getOwner().getId() == userId)
                 .collect(Collectors.toList());
     }
@@ -49,25 +41,24 @@ public class ItemStorageImplInMemory implements ItemStorage {
     @Override
     public Item getById(Long id) {
         log.info("Запрос на поиск вещи с id " + id + " обработан");
-        return items.stream()
-                .filter(e -> e.getId() == id)
-                .findAny()
-                .orElseThrow(() -> new ValidationException("Товар с id " + id + " не зарегестрирован"));
+        Item item = items.get(id);
+        if (item == null) {
+            throw new ValidationException("Товар с id " + id + " не зарегестрирован");
+        }
+        return item;
     }
 
     @Override
-    public Item update(Item itemold, Item itemNew, User user) {
-        itemNew.setId(itemold.getId());
-        items.remove(itemold);
-        items.add(itemNew);
+    public Item update(Item itemNew) {
+        items.put(itemNew.getId(), itemNew);
         log.info("Запрос на обновление вещь с id " + itemNew.getId() + " обработан");
         return itemNew;
     }
 
     @Override
-    public void delete(Item item) {
-        log.info("Запрос на удаление вещи с id " + item.getId() + " обработан");
-        items.remove(item);
+    public void delete(Long id) {
+        log.info("Запрос на удаление вещи с id " + id + " обработан");
+        items.remove(id);
     }
 
     @Override
@@ -77,7 +68,7 @@ public class ItemStorageImplInMemory implements ItemStorage {
             return fitItemDto;
         }
         if (items != null) {
-            for (Item item : items) {
+            for (Item item : items.values()) {
                 if ((item.getAvailable()) && (item.getName().toLowerCase().contains(text)
                         || item.getDescription().toLowerCase().contains(text))) {
                     fitItemDto.add(item);

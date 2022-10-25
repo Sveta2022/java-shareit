@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 @EqualsAndHashCode(of = "id")
 public class UserDto {
     private long id;
-
     @NotBlank(groups = Create.class)
     private String name;
     //email должен быть уникальным

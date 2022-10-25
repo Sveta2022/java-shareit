@@ -15,8 +15,13 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
+    private UserStorage storage;
+
     @Autowired
-    UserStorage storage;
+    public UserServiceImpl(UserStorage storage) {
+        this.storage = storage;
+    }
 
     @Override
     public UserDto create(UserDto userDto) {
@@ -36,7 +41,8 @@ public class UserServiceImpl implements UserService {
         if (userNew.getEmail() == null) {
             userNew.setEmail(userOld.getEmail());
         }
-        return UserMapper.toDto(storage.update(userOld, userNew));
+        userNew.setId(id);
+        return UserMapper.toDto(storage.update(userNew));
     }
 
     @Override
@@ -47,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(long id) {
         User user = UserMapper.toUser(getById(id));
-        storage.delete(user);
+        storage.delete(id);
     }
 
     @Override

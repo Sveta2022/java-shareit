@@ -16,9 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
+    private UserService service;
 
     @Autowired
-    private UserService service;
+    public UserController(UserService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public UserDto create(@Validated({Create.class})

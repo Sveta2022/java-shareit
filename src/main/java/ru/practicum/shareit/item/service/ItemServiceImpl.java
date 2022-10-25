@@ -8,6 +8,7 @@ import ru.practicum.shareit.item.dao.ItemStorage;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.mapper.ItemMapper;
 import ru.practicum.shareit.item.model.Item;
+import ru.practicum.shareit.user.dao.UserStorage;
 import ru.practicum.shareit.user.mapper.UserMapper;
 import ru.practicum.shareit.user.model.User;
 import ru.practicum.shareit.user.service.UserService;
@@ -20,21 +21,20 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
+    private ItemStorage storage;
+    private UserStorage userStorage;
 
     @Autowired
-    ItemStorage storage;
-    @Autowired
-    UserService userService;
-
+    public ItemServiceImpl(ItemStorage storage, UserStorage userStorage) {
+        this.storage = storage;
+        this.userStorage = userStorage;
+    }
 
     @Override
     public ItemDto create(long userId, ItemDto itemDto) {
         Item item = ItemMapper.toItem(itemDto);
-        User user = UserMapper.toUser(userService.getById(userId));
-        if (userId == 0) {
-            throw new NotFoundObjectException("Не найден id " + userId + " пользователя");
-        }
-        return ItemMapper.toDto(storage.create(user, item));
+        User user = userStorage.getById(userId);
+        return ItemMapper.toDto(storage.save(user, item));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDto update(Long id, ItemDto itemDtoNew, Long userId) {
         Item itemOld = storage.getById(id);
-        User user = UserMapper.toUser(userService.getById(userId));
+        User user = userStorage.getById(userId);
         Item itemNew = ItemMapper.toItem(itemDtoNew);
         if (itemNew.getName() == null) {
             itemNew.setName(itemOld.getName());
@@ -72,13 +72,14 @@ public class ItemServiceImpl implements ItemService {
         if (!itemNew.getOwner().equals(user)) {
             throw new NotFoundObjectException("Не верно указан id владельца вещи");
         }
-        return ItemMapper.toDto(storage.update(itemOld, itemNew, user));
+        itemNew.setId(id);
+        return ItemMapper.toDto(storage.update(itemNew));
     }
 
     @Override
     public void delete(Long id) {
         Item item = ItemMapper.toItem(getById(id));
-        storage.delete(item);
+        storage.delete(id);
     }
 
     @Override

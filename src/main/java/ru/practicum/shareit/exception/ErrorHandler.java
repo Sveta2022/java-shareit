@@ -12,7 +12,8 @@ import ru.practicum.shareit.user.UserController;
 
 import java.util.Map;
 
-@RestControllerAdvice(assignableTypes = {UserController.class, ItemController.class, BookingController.class, ItemRequestController.class})
+@RestControllerAdvice(assignableTypes = {UserController.class, ItemController.class, BookingController.class,
+        ItemRequestController.class})
 @Slf4j
 public class ErrorHandler {
     @ExceptionHandler
@@ -38,4 +39,11 @@ public class ErrorHandler {
                 Map.of("Please, attention ", a.getMessage()),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
+//    @ExceptionHandler
+//    public ResponseEntity<Map<String, String>> handleAllGlobalException(final Throwable t) {
+//        log.warn("500 {}", t.getMessage(), t);
+//        return new ResponseEntity<>(
+//                Map.of("Please, attention! Serious mistake ", t.getMessage()),
+//                HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }
