@@ -12,6 +12,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query(nativeQuery = true,
             value = "select * from COMMENTS as c " +
                     "where ITEM_ID =?1 ")
-    List<Comment> findAllByItemId(Long ItemId);
+    List<Comment> findAllByItemId(Long itemId);
 
 }

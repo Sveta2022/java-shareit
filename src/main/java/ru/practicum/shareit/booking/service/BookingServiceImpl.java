@@ -85,10 +85,10 @@ public class BookingServiceImpl implements BookingService {
                 System.out.println(bookings.size());
                 break;
             case WAITING:
-                bookings = storage.findAllByBookerIdAndState(userId, Status.WAITING.toString());
+                bookings = storage.findAllByBookerIdState(userId, Status.WAITING.toString());
                 break;
             case REJECTED:
-                bookings = storage.findAllByBookerIdAndState(userId, Status.REJECTED.toString());
+                bookings = storage.findAllByBookerIdState(userId, Status.REJECTED.toString());
                 break;
         }
         if (bookings != null) {
