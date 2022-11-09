@@ -2,12 +2,10 @@ package ru.practicum.shareit.item.model;
 
 import lombok.*;
 import org.apache.coyote.Request;
-import org.hibernate.validator.constraints.Length;
 import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.validation.Create;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
+import javax.persistence.*;
 
 
 @Getter
@@ -16,19 +14,22 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @ToString
-@EqualsAndHashCode(of = "id")
+@Entity
+@Table(name = "items")
 public class Item {
 
-    private long id;
-    @NotBlank(groups = Create.class)
-    @Length(max = 30, groups = Create.class)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idItem_generator")
+    private Long id;
+    @Column(name = "name", nullable = false)
     private String name;
-    @NotBlank(groups = Create.class)
-    @Length(max = 100, groups = Create.class)
+    @Column(name = "description", nullable = false, length = 100)
     private String description;
-    @NotBlank(groups = Create.class)
+    @OneToOne(orphanRemoval = true, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "owner_id")
     private User owner;
-    @NotNull(groups = Create.class)
+    @Column(name = "is_available", nullable = false)
     private Boolean available;
+    @Transient
     private Request request;
 }

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.item.dto.CommentDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.service.ItemService;
 import ru.practicum.shareit.validation.Create;
@@ -25,7 +26,7 @@ public class ItemController {
     }
 
     @PostMapping
-    public ItemDto create(@Validated({Create.class}) @RequestHeader("X-Sharer-User-Id") long userId,
+    public ItemDto create(@Validated({Create.class}) @RequestHeader("X-Sharer-User-Id") Long userId,
                           @Validated({Create.class}) @RequestBody ItemDto itemDto) {
         log.info("Запрос на создание вещи для пользователя " + userId + " создан");
         return service.create(userId, itemDto);
@@ -34,27 +35,29 @@ public class ItemController {
     @PatchMapping("/{id}")
     public ItemDto update(@RequestBody ItemDto itemDto,
                           @PathVariable long id,
-                          @Validated({Create.class}) @RequestHeader("X-Sharer-User-Id") long userId) {
+                          @Validated({Create.class}) @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Запрос на обновление вещи с id " + id + " создан");
         return service.update(id, itemDto, userId);
     }
 
     @DeleteMapping
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable long id,
+                       @RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Запрос на удаление вещи с id " + id + " создан");
-        service.delete(id);
+        service.delete(id, userId);
     }
 
     @GetMapping
-    public List<ItemDto> getAll(@RequestHeader("X-Sharer-User-Id") long userId) {
+    public List<ItemDto> getAll(@RequestHeader("X-Sharer-User-Id") Long userId) {
         log.info("Запрос на получение списка всех вещей пользователя с id " + userId + " создан");
         return service.getAll(userId);
     }
 
     @GetMapping("/{id}")
-    public ItemDto getById(@PathVariable long id) {
-        log.info("Запрос на получение пользователя по id " + id + " создан");
-        return service.getById(id);
+    public ItemDto getById(@RequestHeader("X-Sharer-User-Id") Long userId,
+                           @PathVariable Long id) {
+        log.info("Запрос на получение вещи по id " + id + " создан");
+        return service.getById(userId, id);
     }
 
     @GetMapping("/search")
@@ -63,4 +66,13 @@ public class ItemController {
         log.info("Запрос на поиск вещей по тексту " + text + " создан");
         return service.search(text);
     }
+
+    @PostMapping("/{itemId}/comment")
+    public CommentDto addComment(@Validated({Create.class}) @RequestHeader("X-Sharer-User-Id") Long authorId,
+                                 @PathVariable Long itemId,
+                                 @RequestBody CommentDto commentDto) {
+        log.info("Запрос на создание комментария для пользователя " + authorId + " создан");
+        return service.addComment(authorId, itemId, commentDto);
+    }
+
 }

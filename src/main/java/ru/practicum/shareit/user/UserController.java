@@ -32,25 +32,25 @@ public class UserController {
 
     @GetMapping
     public List<UserDto> getAll() {
-        log.info("Запрос на добавление пользователя создан");
+        log.info("Запрос на получить всех пользователей создан");
         return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public UserDto getById(@PathVariable long id) {
+    public UserDto getById(@PathVariable Long id) {
         log.info("Запрос на получение пользователя по id " + id + " создан");
         return service.getById(id);
     }
 
     @PatchMapping("/{id}")
     public UserDto update(@RequestBody UserDto userDto,
-                          @PathVariable long id) {
+                          @PathVariable Long id) {
         log.info("Запрос на обновление пользователя " + userDto.getName() + " id " + userDto.getId() + " создан");
         return service.update(id, userDto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable Long id) {
         log.info("Запрос на обновление пользователя с id " + id + " создан");
         service.delete(id);
     }
