@@ -98,8 +98,7 @@ public class ItemServiceImpl implements ItemService {
             }
             Item item = storage.findById(id).orElseThrow();
             User owner = item.getOwner();
-            System.out.println(owner.getId());
-            if (owner.getId() == userId) {
+            if (Objects.equals(owner.getId(), userId)) {
                 if (lastBookings != null) {
                     itemDto.setLastBooking(new ItemDto.BookingDtoItem(lastBookings.getId(),
                             lastBookings.getStart(), lastBookings.getEnd(),
@@ -108,7 +107,6 @@ public class ItemServiceImpl implements ItemService {
                     itemDto.setLastBooking(null);
                 }
                 if (nextBookings != null) {
-                    System.out.println("Третий");
                     itemDto.setNextBooking(new ItemDto.BookingDtoItem(nextBookings.getId(),
                             nextBookings.getStart(), nextBookings.getEnd(),
                             nextBookings.getBooker().getId()));
@@ -116,7 +114,6 @@ public class ItemServiceImpl implements ItemService {
                     itemDto.setNextBooking(null);
                 }
             } else {
-                System.out.println("Будет установлено нулевое значение");
                 itemDto.setLastBooking(null);
                 itemDto.setNextBooking(null);
             }
@@ -139,7 +136,7 @@ public class ItemServiceImpl implements ItemService {
         Booking nextBookings = bookingStorage.findOneByItemIdAndStartAfterOrderByStartAsc(id, LocalDateTime.now());
         List<Comment> comments = commentStorage.findAllByItemId(id);
         Long ownerId = item.getOwner().getId();
-        if (ownerId == userId) {
+        if (Objects.equals(ownerId, userId)) {
             if (lastBookings != null) {
                 itemDto.setLastBooking(new ItemDto.BookingDtoItem(lastBookings.getId(),
                         lastBookings.getStart(), lastBookings.getEnd(),

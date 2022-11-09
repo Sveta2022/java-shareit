@@ -21,7 +21,7 @@ import ru.practicum.shareit.user.model.User;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,7 +53,7 @@ public class BookingServiceImpl implements BookingService {
         Item item = itemStorage.findById(itemId)
                 .orElseThrow(() -> new NotFoundObjectException("Вещь с id " + itemId + " не найдена"));
         User ownerUser = item.getOwner();
-        if (ownerUser.getId() == bookerId) {
+        if (ownerUser.equals(userBooker)) {
             throw new NotFoundObjectException("Владелец вещи не может забронировать собственную вещь");
         }
         if (!item.getAvailable()) {
@@ -149,8 +149,8 @@ public class BookingServiceImpl implements BookingService {
         Item item = itemStorage.findById(booking.getItem().getId())
                 .orElseThrow(() -> new NotFoundObjectException("нет такого объекта"));
         User ownerUser = item.getOwner();
-        if (bookerUser.getId() != userId) {
-            if (ownerUser.getId() == userId) {
+        if (!Objects.equals(bookerUser.getId(), userId)) {
+            if (Objects.equals(ownerUser.getId(), userId)) {
                 if (booking.getStatus() == Status.APPROVED) {
                     throw new ValidationException("Статус APPROVED уже установлен");
                 }
@@ -172,11 +172,9 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public void delete(Long id) {
-        Optional<Booking> booking = storage.findById(id);
-        if (booking.isPresent()) {
-            storage.delete(booking.get());
-        }
-        throw new NotFoundObjectException("Бронирование с id " + id + " не зарегестрирован");
+        Booking booking = storage.findById(id)
+                .orElseThrow(() -> new NotFoundObjectException("Бронирование с id " + id + " не зарегестрирован"));
+            storage.delete(booking);
     }
 
     private void validBookingDate(BookingInputDto bookingInputDto) {
