@@ -36,5 +36,6 @@ public class Booking {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
+    @Transient
     private Boolean isApproved;
 }
