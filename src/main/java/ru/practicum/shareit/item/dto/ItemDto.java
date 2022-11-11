@@ -24,17 +24,24 @@ import java.util.List;
 public class ItemDto {
 
     private Long id;
+
     @NotBlank(groups = Create.class)
     @Length(max = 30, groups = Create.class)
     private String name;
+
     @NotBlank(groups = Create.class)
     @Length(max = 100, groups = Create.class)
     private String description;
+
     @NotNull(groups = Create.class)
     private Boolean available;
+
     private Request request;
+
     private BookingDtoItem lastBooking = null;
+
     private BookingDtoItem nextBooking = null;
+
     private List<CommentDto> comments = new ArrayList<>();
 
     @Getter

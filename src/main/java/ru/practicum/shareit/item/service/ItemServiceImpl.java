@@ -10,7 +10,7 @@ import ru.practicum.shareit.item.dto.CommentDto;
 import ru.practicum.shareit.item.mapper.CommentMapper;
 import ru.practicum.shareit.request.exception.NotFoundObjectException;
 import ru.practicum.shareit.request.exception.ValidationException;
-import ru.practicum.shareit.item.dao.CommentRepository;
+import ru.practicum.shareit.item.dao.CommentStorage;
 import ru.practicum.shareit.item.dao.ItemStorage;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.mapper.ItemMapper;
@@ -32,12 +32,12 @@ import java.util.stream.Collectors;
 public class ItemServiceImpl implements ItemService {
     private ItemStorage storage;
     private UserStorage userStorage;
-    private CommentRepository commentStorage;
+    private CommentStorage commentStorage;
     private BookingStorage bookingStorage;
 
     @Autowired
     public ItemServiceImpl(ItemStorage storage, UserStorage userStorage,
-                           CommentRepository commentStorage, BookingStorage bookingStorage) {
+                           CommentStorage commentStorage, BookingStorage bookingStorage) {
         this.storage = storage;
         this.userStorage = userStorage;
         this.commentStorage = commentStorage;

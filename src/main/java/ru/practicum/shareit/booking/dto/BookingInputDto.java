@@ -11,10 +11,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class BookingInputDto {
+
     private Long id;
+
     private Long itemId;
+
     @FutureOrPresent
     LocalDateTime start;
+
     @FutureOrPresent
     LocalDateTime end;
 }

@@ -15,11 +15,13 @@ import javax.validation.constraints.NotBlank;
 @ToString
 @EqualsAndHashCode(of = "id")
 public class UserDto {
+
     private Long id;
+
     @NotBlank(groups = Create.class)
     private String name;
+
     @NotBlank(groups = Create.class)
     @Email(groups = Create.class)
     private String email;
-
 }

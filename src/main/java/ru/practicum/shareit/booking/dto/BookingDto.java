@@ -21,14 +21,37 @@ import java.time.LocalDateTime;
 public class BookingDto {
 
     private Long id;
+
     @FutureOrPresent
     private LocalDateTime start;
+
     @FutureOrPresent
     private LocalDateTime end;
+
     @NotBlank(groups = Create.class)
-    private Item item;
-    private User booker;
+    private ItemInput item;
+
+    private UserInput booker;
+
     private Status status;
 
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    public static class ItemInput{
+        private Long id;
+        private String name;
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    public static class UserInput{
+        private Long id;
+    }
 
 }

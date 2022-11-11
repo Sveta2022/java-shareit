@@ -7,7 +7,7 @@ import ru.practicum.shareit.item.model.Comment;
 
 import java.util.List;
 
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+public interface CommentStorage extends JpaRepository<Comment, Long> {
 
     @Query(nativeQuery = true,
             value = "select * from COMMENTS as c " +

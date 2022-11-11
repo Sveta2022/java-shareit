@@ -21,15 +21,20 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "name", nullable = false)
     private String name;
+
     @Column(name = "description", nullable = false, length = 100)
     private String description;
+
     @OneToOne(orphanRemoval = true, cascade = {CascadeType.ALL})
     @JoinColumn(name = "owner_id")
     private User owner;
+
     @Column(name = "is_available", nullable = false)
     private Boolean available;
+
     @Transient
     private Request request;
 }
