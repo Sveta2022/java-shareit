@@ -1,19 +1,12 @@
 package ru.practicum.shareit.user.dao;
 
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.practicum.shareit.user.model.User;
 
-import java.util.List;
 
+@Repository
+public interface UserStorage extends JpaRepository<User,Long> {
 
-public interface UserStorage {
-    User save(User user);
-
-    User update(User userNew);
-
-    User getById(long id);
-
-    void delete(Long id);
-
-    List<User> getAll();
 }

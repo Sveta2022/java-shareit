@@ -1,10 +1,10 @@
 package ru.practicum.shareit.user.model;
 
 import lombok.*;
-import ru.practicum.shareit.validation.Create;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+
+import javax.persistence.*;
+
 
 
 @Getter
@@ -13,13 +13,16 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Builder
 @ToString
-@EqualsAndHashCode(of = "id")
+@Entity
+@Table(name = "users")
 public class User {
-    private long id;
-    @NotBlank(groups = Create.class)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
-    //email должен быть уникальным
-    @NotBlank(groups = Create.class)
-    @Email(groups = Create.class)
+
+    @Column(name = "email", unique = true)
     private String email;
 }

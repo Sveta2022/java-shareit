@@ -1,4 +1,4 @@
-package ru.practicum.shareit.exception;
+package ru.practicum.shareit.request.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class ErrorHandler {
     public ResponseEntity<Map<String, String>> handleValidation(final ValidationException v) {
         log.warn("400 {}", v.getMessage(), v);
         return new ResponseEntity<>(
-                Map.of("Validation is not correct ", v.getMessage()),
+                Map.of("error", v.getMessage()),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -28,22 +28,23 @@ public class ErrorHandler {
     public ResponseEntity<Map<String, String>> handleNotFound(final NotFoundObjectException n) {
         log.warn("404 {}", n.getMessage(), n);
         return new ResponseEntity<>(
-                Map.of("Object is not found ", n.getMessage()),
+                Map.of("error", n.getMessage()),
                 HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
     public ResponseEntity<Map<String, String>> handleAllOther(final AllOtherException a) {
-        log.warn("500 {}", a.getMessage(), a);
+        log.warn("409 {}", a.getMessage(), a);
         return new ResponseEntity<>(
-                Map.of("Please, attention ", a.getMessage()),
+                Map.of("error", a.getMessage()),
+                HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<Map<String, String>> handleAllIlligal(final NoligalArgumentException nL) {
+        log.warn("500 {}", nL.getMessage(), nL);
+        return new ResponseEntity<>(
+                Map.of("error", nL.getMessage()),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
-//    @ExceptionHandler
-//    public ResponseEntity<Map<String, String>> handleAllGlobalException(final Throwable t) {
-//        log.warn("500 {}", t.getMessage(), t);
-//        return new ResponseEntity<>(
-//                Map.of("Please, attention! Serious mistake ", t.getMessage()),
-//                HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
 }

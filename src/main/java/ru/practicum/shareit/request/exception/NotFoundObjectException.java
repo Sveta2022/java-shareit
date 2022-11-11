@@ -1,11 +1,11 @@
-package ru.practicum.shareit.exception;
+package ru.practicum.shareit.request.exception;
 
 
 /*
 Класс передает сообщение для всех ситуаций, если искомый объект не найден;
  */
 public class NotFoundObjectException extends NullPointerException {
-    public NotFoundObjectException(String s) {
-        super(s);
+    public NotFoundObjectException(String error) {
+        super(error);
     }
 }
