@@ -11,7 +11,7 @@ import ru.practicum.shareit.request.exception.NoligalArgumentException;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
+
 
 /**
  * add-bookings
@@ -53,7 +53,7 @@ public class BookingController {
     public List<BookingDto> getAllforOwner(@RequestHeader("X-Sharer-User-Id") Long userId,
                                            @RequestParam(name = "state", defaultValue = "ALL") String state) {
         BookingState bookingState = BookingState.from(state)
-                .orElseThrow(()->new NoligalArgumentException("Unknown state: " + state));
+                .orElseThrow(() -> new NoligalArgumentException("Unknown state: " + state));
         log.info("Запрос на получить все бронирования для арендодателя создан");
         return service.getAllByOwner(userId, bookingState);
     }

@@ -1,6 +1,5 @@
 package ru.practicum.shareit.booking;
 
-import ru.practicum.shareit.request.exception.NoligalArgumentException;
 
 import java.util.Optional;
 

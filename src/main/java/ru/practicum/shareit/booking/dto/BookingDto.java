@@ -2,8 +2,6 @@ package ru.practicum.shareit.booking.dto;
 
 import lombok.*;
 import ru.practicum.shareit.booking.Status;
-import ru.practicum.shareit.item.model.Item;
-import ru.practicum.shareit.user.model.User;
 import ru.practicum.shareit.validation.Create;
 
 import javax.validation.constraints.FutureOrPresent;
@@ -40,7 +38,7 @@ public class BookingDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class ItemInput{
+    public static class ItemInput {
         private Long id;
         private String name;
     }
@@ -50,7 +48,7 @@ public class BookingDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class UserInput{
+    public static class UserInput {
         private Long id;
     }
 
