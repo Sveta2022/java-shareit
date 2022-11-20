@@ -1,4 +1,4 @@
-package ru.practicum.shareit.request.exception;
+package ru.practicum.shareit.validation.exception;
 
 /*
 Класс передает сообщение, если возникло исключение

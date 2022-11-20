@@ -28,6 +28,7 @@ public class ItemController {
     @PostMapping
     public ItemDto create(@Validated({Create.class}) @RequestHeader("X-Sharer-User-Id") Long userId,
                           @Validated({Create.class}) @RequestBody ItemDto itemDto) {
+        System.out.println(itemDto);
         log.info("Запрос на создание вещи для пользователя " + userId + " создан");
         return service.create(userId, itemDto);
     }
@@ -48,9 +49,11 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<ItemDto> getAll(@RequestHeader("X-Sharer-User-Id") Long userId) {
+    public List<ItemDto> getAll(@RequestHeader("X-Sharer-User-Id") Long userId,
+                                @RequestParam(name = "from", defaultValue = "0") int from,
+                                @RequestParam(name = "size", defaultValue = "10") int size) {
         log.info("Запрос на получение списка всех вещей пользователя с id " + userId + " создан");
-        return service.getAll(userId);
+        return service.getAll(userId, from, size);
     }
 
     @GetMapping("/{id}")
@@ -62,9 +65,11 @@ public class ItemController {
 
     @GetMapping("/search")
     @ResponseBody
-    public List<ItemDto> search(@RequestParam(name = "text") String text) {
+    public List<ItemDto> search(@RequestParam(name = "text") String text,
+                                @RequestParam(name = "from", defaultValue = "0") int from,
+                                @RequestParam(name = "size", defaultValue = "10") int size) {
         log.info("Запрос на поиск вещей по тексту " + text + " создан");
-        return service.search(text);
+        return service.search(text, from, size);
     }
 
     @PostMapping("/{itemId}/comment")

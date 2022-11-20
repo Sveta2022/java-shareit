@@ -2,6 +2,7 @@ package ru.practicum.shareit.booking.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.shareit.booking.BookingState;
@@ -11,8 +12,8 @@ import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingInputDto;
 import ru.practicum.shareit.booking.mapper.BookingMapper;
 import ru.practicum.shareit.booking.model.Booking;
-import ru.practicum.shareit.request.exception.NotFoundObjectException;
-import ru.practicum.shareit.request.exception.ValidationException;
+import ru.practicum.shareit.validation.exception.NotFoundObjectException;
+import ru.practicum.shareit.validation.exception.ValidationException;
 import ru.practicum.shareit.item.dao.ItemStorage;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.dao.UserStorage;
@@ -66,29 +67,33 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<BookingDto> getAllByBooker(Long userId, BookingState state) {
+    public List<BookingDto> getAllByBooker(Long userId, BookingState state, int from, int size) {
         User user = userStorage.findById(userId)
                 .orElseThrow(() -> new NotFoundObjectException("Нет такого пользователя"));
+        if (from < 0 || size <= 0) {
+            throw new ValidationException("не верно указан количество позиций на странице");
+        }
+        int page = from / size;
+        final PageRequest pageRequest = PageRequest.of(page, size);
         List<Booking> bookings = new ArrayList<>();
         switch (state) {
             case ALL:
-                bookings = storage.findAllByBookerIdOrderByStartDesc(userId);
+                bookings = storage.findAllByBookerIdOrderByStartDesc(userId,pageRequest);
                 break;
             case CURRENT:
-                bookings = storage.findAllByBookerCurrent(userId, LocalDateTime.now());
+                bookings = storage.findAllByBookerCurrent(userId, LocalDateTime.now(),pageRequest);
                 break;
             case PAST:
-                bookings = storage.findAllByBookerIdAndEndBeforeOrderByIdDesc(userId, LocalDateTime.now());
+                bookings = storage.findAllByBookerIdAndEndBeforeOrderByIdDesc(userId, LocalDateTime.now(),pageRequest);
                 break;
             case FUTURE:
-                bookings = storage.findAllByBookerIdAndStartAfterOrderByStartDesc(userId, LocalDateTime.now());
-                System.out.println(bookings.size());
+                bookings = storage.findAllByBookerIdAndStartAfterOrderByStartDesc(userId, LocalDateTime.now(),pageRequest);
                 break;
             case WAITING:
-                bookings = storage.findAllByBookerIdState(userId, Status.WAITING.toString());
+                bookings = storage.findAllByBookerIdState(userId, Status.WAITING.toString(),pageRequest);
                 break;
             case REJECTED:
-                bookings = storage.findAllByBookerIdState(userId, Status.REJECTED.toString());
+                bookings = storage.findAllByBookerIdState(userId, Status.REJECTED.toString(),pageRequest);
                 break;
         }
         if (bookings != null) {
@@ -98,29 +103,33 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<BookingDto> getAllByOwner(Long userId, BookingState state) {
+    public List<BookingDto> getAllByOwner(Long userId, BookingState state, int from, int size) {
         User user = userStorage.findById(userId)
                 .orElseThrow(() -> new NotFoundObjectException("Нет такого пользователя"));
+        if (from < 0 || size <= 0) {
+            throw new ValidationException("не верно указан количество позиций на странице");
+        }
+        int page = from / size;
+        final PageRequest pageRequest = PageRequest.of(page, size);
         List<Booking> bookings = new ArrayList<>();
         switch (state) {
             case ALL:
-                bookings = storage.findAllByOwnerIdOrderByStartDesc(userId);
+                bookings = storage.findAllByOwnerIdOrderByStartDesc(userId,pageRequest);
                 break;
             case CURRENT:
-                bookings = storage.findAllByOwnerIdCurrent(userId, LocalDateTime.now());
+                bookings = storage.findAllByOwnerIdCurrent(userId, LocalDateTime.now(),pageRequest);
                 break;
             case PAST:
-                bookings = storage.findAllByOwnerIdStatePast(userId, LocalDateTime.now());
+                bookings = storage.findAllByOwnerIdStatePast(userId, LocalDateTime.now(),pageRequest);
                 break;
             case FUTURE:
-                bookings = storage.findAllByOwnerIdStateFuture(userId, LocalDateTime.now());
-                System.out.println(bookings.size());
+                bookings = storage.findAllByOwnerIdStateFuture(userId, LocalDateTime.now(),pageRequest);
                 break;
             case WAITING:
-                bookings = storage.findAllByOwnerIdState(userId, Status.WAITING.toString());
+                bookings = storage.findAllByOwnerIdState(userId, Status.WAITING.toString(),pageRequest);
                 break;
             case REJECTED:
-                bookings = storage.findAllByOwnerIdState(userId, Status.REJECTED.toString());
+                bookings = storage.findAllByOwnerIdState(userId, Status.REJECTED.toString(),pageRequest);
                 break;
         }
         return bookings.stream().map(BookingMapper::toDto).collect(Collectors.toList());

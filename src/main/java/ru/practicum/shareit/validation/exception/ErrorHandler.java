@@ -1,4 +1,4 @@
-package ru.practicum.shareit.request.exception;
+package ru.practicum.shareit.validation.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
