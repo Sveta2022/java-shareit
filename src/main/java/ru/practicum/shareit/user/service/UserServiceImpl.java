@@ -12,7 +12,6 @@ import ru.practicum.shareit.user.model.User;
 
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,11 +50,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(Long id) {
-        Optional<User> user = storage.findById(id);
-        if (user.isPresent()) {
-            return UserMapper.toDto(user.get());
-        }
-        throw new NotFoundObjectException("Пользователя с id " + id + " не зарегестрирован");
+        User user = storage.findById(id)
+                .orElseThrow(() -> new NotFoundObjectException("Пользователя с id " + id + " не зарегестрирован"));
+            return UserMapper.toDto(user);
     }
 
     @Transactional
@@ -71,6 +68,6 @@ public class UserServiceImpl implements UserService {
                 .map(UserMapper::toDto)
                 .collect(Collectors.toList());
     }
-        }
+}
 
 

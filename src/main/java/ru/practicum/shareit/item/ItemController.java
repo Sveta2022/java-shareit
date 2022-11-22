@@ -12,7 +12,6 @@ import ru.practicum.shareit.validation.Create;
 
 import java.util.List;
 
-
 @Slf4j
 @RequiredArgsConstructor
 @RestController
