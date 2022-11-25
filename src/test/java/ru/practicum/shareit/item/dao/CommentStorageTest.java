@@ -20,14 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class CommentStorageTest {
 
-    @Autowired
     private CommentStorage commentStorage;
-    @Autowired
     private ItemStorage itemStorage;
-    @Autowired
     private UserStorage userStorage;
     private final TestEntityManager em;
-
     private Comment comment1;
 
     private Item item1;
@@ -51,13 +47,11 @@ class CommentStorageTest {
         commentStorage.save(comment1);
     }
 
-
     @Test
     void findAllByItemId() {
         TypedQuery<Comment> query = em.getEntityManager()
                 .createQuery("Select c from Comment c join Item i on c.item.id = i.id where c.item.id = :itemId", Comment.class);
         Comment comment = query.setParameter("itemId", comment1.getId()).getSingleResult();
         assertNotNull(comment);
-
     }
 }

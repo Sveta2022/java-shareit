@@ -21,24 +21,22 @@ import static org.junit.jupiter.api.Assertions.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class ItemControllerTest {
 
-    @Autowired
     private UserController userController;
-    @Autowired
     private ItemController itemController;
-    @Autowired
     private BookingController bookingController;
-
-
     private UserDto userDto1;
     private UserDto userDto2;
-
     private ItemDto itemDto1;
-    private ItemDto itemDto2;
     private ItemDto itemDtoTest;
-
     private CommentDto commentDto1;
-
     private BookingInputDto bookingInputDto;
+
+    @Autowired
+    public ItemControllerTest(UserController userController, ItemController itemController, BookingController bookingController) {
+        this.userController = userController;
+        this.itemController = itemController;
+        this.bookingController = bookingController;
+    }
 
     @BeforeEach
     void start() {
@@ -55,7 +53,6 @@ class ItemControllerTest {
         itemDtoTest = itemController.create(userDto1.getId(), itemDto1);
         bookingController.create(bookingInputDto, userDto2.getId());
     }
-
 
     @Test
     void create() {
@@ -92,7 +89,5 @@ class ItemControllerTest {
     void addComment() {
         CommentDto commentDto = itemController.addComment(userDto2.getId(), itemDto1.getId(), commentDto1);
         assertNotNull(commentDto);
-
     }
-
 }

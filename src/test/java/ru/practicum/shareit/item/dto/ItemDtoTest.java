@@ -17,11 +17,14 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 @JsonTest
 class ItemDtoTest {
 
-    @Autowired
     private JacksonTester<ItemDto> json;
+    private ObjectMapper mapper;
 
     @Autowired
-    ObjectMapper mapper;
+    public ItemDtoTest(JacksonTester<ItemDto> json, ObjectMapper mapper) {
+        this.json = json;
+        this.mapper = mapper;
+    }
 
     @Test
     void testItemDto() throws Exception {
@@ -46,7 +49,5 @@ class ItemDtoTest {
         assertThat(result).extractingJsonPathStringValue("$.lastBooking.start").isEqualTo(startLastBookingString.replace("\"", ""));
         assertThat(result).extractingJsonPathStringValue("$.comments").isEqualTo(itemDto.getComments());
         assertThat(result).extractingJsonPathNumberValue("$.requestId").isEqualTo(itemDto.getRequestId().intValue());
-
     }
-
 }

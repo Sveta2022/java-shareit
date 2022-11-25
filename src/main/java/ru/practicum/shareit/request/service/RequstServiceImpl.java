@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class RequstServiceImpl implements RequestService {
-    RequestStorage storage;
-    UserStorage userStorage;
-    ItemStorage itemStorage;
+    private RequestStorage storage;
+    private UserStorage userStorage;
+    private ItemStorage itemStorage;
 
     @Autowired
     public RequstServiceImpl(RequestStorage storage, UserStorage userStorage, ItemStorage itemStorage) {
@@ -37,7 +37,6 @@ public class RequstServiceImpl implements RequestService {
         this.userStorage = userStorage;
         this.itemStorage = itemStorage;
     }
-
 
     @Override
     @Transactional

@@ -10,20 +10,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import ru.practicum.shareit.user.dto.UserDto;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
 
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class UserControllerTest {
 
-    @Autowired
     private UserController userController;
-
     private UserDto userDto1;
     private UserDto userDto2;
+
+    @Autowired
+    public UserControllerTest(UserController userController) {
+        this.userController = userController;
+    }
 
     @BeforeEach
     void start() {
@@ -46,12 +50,11 @@ class UserControllerTest {
     }
 
     @Test
-    void  getById() {
+    void getById() {
         UserDto userDtoNew1 = userController.create(userDto1);
         UserDto userDtoNew2 = userController.create(userDto2);
         UserDto userDtoNew = userController.getById(1L);
         assertEquals(userDtoNew.getId(), userDtoNew1.getId());
-
     }
 
     @Test
@@ -68,5 +71,4 @@ class UserControllerTest {
         userController.delete(1L);
         assertEquals(userController.getAll().size(), 1);
     }
-
 }

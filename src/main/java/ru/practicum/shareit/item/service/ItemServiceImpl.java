@@ -34,11 +34,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ItemServiceImpl implements ItemService {
-    ItemStorage storage;
-    UserStorage userStorage;
-    CommentStorage commentStorage;
-    BookingStorage bookingStorage;
-    RequestStorage requestStorage;
+    private ItemStorage storage;
+    private UserStorage userStorage;
+    private CommentStorage commentStorage;
+    private BookingStorage bookingStorage;
+    private RequestStorage requestStorage;
 
     @Autowired
     public ItemServiceImpl(ItemStorage storage, UserStorage userStorage, CommentStorage commentStorage, BookingStorage bookingStorage, RequestStorage requestStorage) {

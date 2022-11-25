@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
-    UserStorage storage;
+    private UserStorage storage;
 
     @Autowired
     public UserServiceImpl(UserStorage storage) {

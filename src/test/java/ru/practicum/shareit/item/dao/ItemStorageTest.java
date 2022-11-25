@@ -18,17 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataJpaTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class ItemStorageTest {
-
-    @Autowired
     private UserStorage userStorage;
-    @Autowired
     private ItemStorage itemStorage;
 
     private final TestEntityManager em;
 
     private User user1;
-
-    Item item1;
+    private Item item1;
 
     @Autowired
     public ItemStorageTest(UserStorage userStorage, ItemStorage itemStorage, TestEntityManager em) {
@@ -37,7 +33,6 @@ class ItemStorageTest {
         this.em = em;
     }
 
-
     @BeforeEach
     void start() {
         user1 = new User(1L, "user1", "user1@email.ru");
@@ -45,7 +40,6 @@ class ItemStorageTest {
 
         userStorage.save(user1);
         itemStorage.save(item1);
-
     }
 
     @Test

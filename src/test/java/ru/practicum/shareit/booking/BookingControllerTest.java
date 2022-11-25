@@ -21,21 +21,21 @@ import static org.junit.jupiter.api.Assertions.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class BookingControllerTest {
 
-    @Autowired
     private BookingController bookingController;
-
-    @Autowired
-    UserController userController;
-
-    @Autowired
-    ItemController itemController;
-
+    private UserController userController;
+    private ItemController itemController;
     private BookingInputDto bookingInputDto1;
-    private BookingInputDto bookingInputDto2;
     private BookingDto bookingDtoNew;
     private ItemDto itemDto1;
     private UserDto userDto1;
     private UserDto userDto2;
+
+    @Autowired
+    public BookingControllerTest(BookingController bookingController, UserController userController, ItemController itemController) {
+        this.bookingController = bookingController;
+        this.userController = userController;
+        this.itemController = itemController;
+    }
 
     @BeforeEach
     void start() {
@@ -51,7 +51,6 @@ class BookingControllerTest {
         bookingInputDto1 = new BookingInputDto(1L, itemDto1.getId(), LocalDateTime.now().plusDays(2),
                 LocalDateTime.now().plusDays(5));
         bookingDtoNew = bookingController.create(bookingInputDto1, userDto2.getId());
-
     }
 
     @Test
@@ -61,8 +60,8 @@ class BookingControllerTest {
 
     @Test
     void getAllforBooker() {
-        assertEquals(1, bookingController.getAllforBooker(userDto2.getId(), "FUTURE", 1, 10).size());
-
+        assertEquals(1, bookingController.getAllforBooker(userDto2.getId(),
+                "FUTURE", 1, 10).size());
     }
 
     @Test
@@ -71,7 +70,6 @@ class BookingControllerTest {
                 () -> bookingController.getAllforBooker(userDto2.getId(), "Unknown", 1, 10).size());
 
         assertEquals("Unknown state: Unknown", exception.getMessage());
-
     }
 
     @Test
@@ -89,5 +87,4 @@ class BookingControllerTest {
         BookingDto bookingDtoUpdate = bookingController.update(bookingInputDto1.getId(), userDto1.getId(), true);
         assertNotNull(bookingDtoUpdate);
     }
-
 }

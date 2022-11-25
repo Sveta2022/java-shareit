@@ -14,8 +14,6 @@ import ru.practicum.shareit.item.dto.CommentDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.service.ItemService;
 import ru.practicum.shareit.user.dto.UserDto;
-
-
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,18 +32,19 @@ class ItemControllerTestMockMvc {
 
     @MockBean
     private ItemService itemService;
-
-    @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
     private ObjectMapper mapper;
-
     private UserDto userDto1;
     private ItemDto itemDto1;
     private ItemDto itemDto2;
     private CommentDto commentDto1;
 
+    @Autowired
+    public ItemControllerTestMockMvc(ItemService itemService, MockMvc mockMvc, ObjectMapper mapper) {
+        this.itemService = itemService;
+        this.mockMvc = mockMvc;
+        this.mapper = mapper;
+    }
 
     @BeforeEach
     void start() {
@@ -84,7 +83,6 @@ class ItemControllerTestMockMvc {
                 .authorName("user1")
                 .created(LocalDateTime.now())
                 .build();
-
     }
 
     @Test
@@ -203,5 +201,4 @@ class ItemControllerTestMockMvc {
         Mockito.verify(itemService, Mockito.times(1))
                 .addComment(anyLong(), anyLong(), any());
     }
-
 }

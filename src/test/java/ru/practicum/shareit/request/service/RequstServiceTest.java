@@ -11,7 +11,7 @@ import ru.practicum.shareit.item.dao.ItemStorage;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.mapper.ItemMapper;
 import ru.practicum.shareit.item.model.Item;
-import ru.practicum.shareit.item.service.ItemServiceImpl;
+import ru.practicum.shareit.item.service.ItemService;
 import ru.practicum.shareit.request.dao.RequestStorage;
 import ru.practicum.shareit.request.dto.ItemRequestDto;
 import ru.practicum.shareit.request.mapper.RequestMapper;
@@ -20,7 +20,7 @@ import ru.practicum.shareit.user.dao.UserStorage;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.mapper.UserMapper;
 import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.user.service.UserServiceImpl;
+import ru.practicum.shareit.user.service.UserService;
 import ru.practicum.shareit.validation.exception.NotFoundObjectException;
 import ru.practicum.shareit.validation.exception.ValidationException;
 
@@ -32,22 +32,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class RequstServiceImplTest {
+class RequstServiceTest {
 
     @Mock
-    UserStorage userStorage;
+    private UserStorage userStorage;
     @Mock
     private ItemStorage itemStorage;
     @Mock
     private RequestStorage requestStorage;
 
-    @Autowired
-    ItemServiceImpl itemService;
-    @Autowired
-    UserServiceImpl userService;
-
-    @Autowired
-    RequstServiceImpl requstService;
+    private ItemService itemService;
+    private UserService userService;
+    private RequestService requstService;
 
     private User user1;
     private User user2;
@@ -62,7 +58,9 @@ class RequstServiceImplTest {
     private ItemRequestDto requestDtoNew;
 
     @Autowired
-    public RequstServiceImplTest(UserStorage userStorage, ItemStorage itemStorage, RequestStorage requestStorage, ItemServiceImpl itemService, UserServiceImpl userService, RequstServiceImpl requstService) {
+    public RequstServiceTest(UserStorage userStorage, ItemStorage itemStorage,
+                             RequestStorage requestStorage, ItemService itemService,
+                             UserService userService, RequestService requstService) {
         this.userStorage = userStorage;
         this.itemStorage = itemStorage;
         this.requestStorage = requestStorage;
@@ -73,10 +71,6 @@ class RequstServiceImplTest {
 
     @BeforeEach
     void start() {
-        requstService.storage = requestStorage;
-        requstService.userStorage = userStorage;
-        requstService.itemStorage = itemStorage;
-
         LocalDateTime startLastBooking = LocalDateTime.now().minusDays(7);
         LocalDateTime endLastBooking = LocalDateTime.now().minusDays(3);
         LocalDateTime startNextBooking = LocalDateTime.now().plusDays(3);
@@ -113,7 +107,6 @@ class RequstServiceImplTest {
         itemService.create(user1.getId(), itemDto1);
         requestStorage.save(itemRequest1);
         requestDtoNew = requstService.create(user2.getId(), itemRequestDto1);
-
     }
 
     @Test
@@ -123,10 +116,8 @@ class RequstServiceImplTest {
 
     @Test
     void createWrongUser() {
-
         final NotFoundObjectException exception = assertThrows(NotFoundObjectException.class,
                 () -> requstService.create(99L, itemRequestDto1));
-
         assertEquals("Пользователь с id " + 99L + " не зарегестрирован", exception.getMessage());
     }
 
@@ -140,7 +131,6 @@ class RequstServiceImplTest {
     void getById() {
         ItemRequestDto itemRequestDtoNew = requstService.getById(user2.getId(), itemRequest1.getId());
         assertEquals(itemRequestDtoNew.getId(), itemRequest1.getId());
-
     }
 
     @Test

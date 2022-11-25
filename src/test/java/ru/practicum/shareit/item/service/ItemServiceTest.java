@@ -13,7 +13,7 @@ import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingInputDto;
 import ru.practicum.shareit.booking.mapper.BookingMapper;
 import ru.practicum.shareit.booking.model.Booking;
-import ru.practicum.shareit.booking.service.BookingServiceImpl;
+import ru.practicum.shareit.booking.service.BookingService;
 import ru.practicum.shareit.item.dao.CommentStorage;
 import ru.practicum.shareit.item.dao.ItemStorage;
 import ru.practicum.shareit.item.dto.CommentDto;
@@ -27,7 +27,7 @@ import ru.practicum.shareit.user.dao.UserStorage;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.mapper.UserMapper;
 import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.user.service.UserServiceImpl;
+import ru.practicum.shareit.user.service.UserService;
 import ru.practicum.shareit.validation.exception.NotFoundObjectException;
 import ru.practicum.shareit.validation.exception.ValidationException;
 
@@ -39,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class ItemServiceImplTest {
+class ItemServiceTest {
 
     @Mock
     UserStorage userStorage;
@@ -51,32 +51,29 @@ class ItemServiceImplTest {
     private BookingStorage bookingStorage;
     @Mock
     private RequestStorage requestStorage;
-    @Autowired
-    ItemServiceImpl itemService;
-    @Autowired
-    UserServiceImpl userService;
-    @Autowired
-    BookingServiceImpl bookingService;
 
+    private ItemService itemService;
+    private UserService userService;
+    private BookingService bookingService;
 
     private User user1;
     private User user2;
     private UserDto userDto1;
     private UserDto userDto2;
     private ItemDto itemDto1;
-    private ItemDto itemDto2;
-    private Item item1;
-    private Item item2;
-    private ItemDto itemDtoNew;
 
+    private Item item1;
+
+    private ItemDto itemDtoNew;
     private BookingDto bookingDto1;
-    private Booking booking1;
     private CommentDto commentDto1;
     private Comment comment1;
-    private CommentDto commentDto2;
 
     @Autowired
-    public ItemServiceImplTest(UserStorage userStorage, ItemStorage storage, CommentStorage commentStorage, BookingStorage bookingStorage, RequestStorage requestStorage, ItemServiceImpl itemService, UserServiceImpl userService, BookingServiceImpl bookingService) {
+    public ItemServiceTest(UserStorage userStorage, ItemStorage storage,
+                           CommentStorage commentStorage, BookingStorage bookingStorage,
+                           RequestStorage requestStorage, ItemService itemService,
+                           UserService userService, BookingService bookingService) {
         this.userStorage = userStorage;
         this.storage = storage;
         this.commentStorage = commentStorage;
@@ -87,15 +84,8 @@ class ItemServiceImplTest {
         this.bookingService = bookingService;
     }
 
-
     @BeforeEach
     void start() {
-        itemService.storage = storage;
-        itemService.userStorage = userStorage;
-        itemService.requestStorage = requestStorage;
-        itemService.bookingStorage = bookingStorage;
-        itemService.commentStorage = commentStorage;
-
         LocalDateTime startLastBooking = LocalDateTime.now().minusDays(7);
         LocalDateTime endLastBooking = LocalDateTime.now().minusDays(3);
         LocalDateTime startNextBooking = LocalDateTime.now().plusDays(3);
@@ -150,9 +140,7 @@ class ItemServiceImplTest {
         bookingService.create(bookingInputDto3, user2.getId());
         CommentDto commentDto = itemService.addComment(user2.getId(), item1.getId(), commentDto1);
         assertEquals(1L, commentDto.getId());
-
     }
-
 
     @Test
     void addCommentWithoutText() {
@@ -199,13 +187,11 @@ class ItemServiceImplTest {
         assertEquals(exception.getMessage(), "Товар с id " + 99L + " не зарегестрирован");
     }
 
-
     @Test
     void update() {
         ItemDto itemDtoNew = new ItemDto(1L, "updateItemDto", null, true, null, null, null, null);
         ItemDto itemDtoupdate = itemService.update(item1.getId(), itemDtoNew, user1.getId());
         assertEquals(itemDtoupdate.getName(), "updateItemDto");
-
     }
 
     @Test

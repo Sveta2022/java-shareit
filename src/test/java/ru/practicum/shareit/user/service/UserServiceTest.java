@@ -27,25 +27,21 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
 
     @Mock
-    UserStorage userStorage;
-    @Autowired
-    UserServiceImpl userService;
-
+    private UserStorage userStorage;
+    private UserService userService;
     private User user1;
     private User user2;
     private UserDto userDto1;
     private UserDto userDto2;
 
     @Autowired
-    public UserServiceTest(UserServiceImpl userService, UserStorage userStorage) {
+    public UserServiceTest(UserService userService, UserStorage userStorage) {
         this.userService = userService;
         this.userStorage = userStorage;
-
     }
 
     @BeforeEach
     void start() {
-        userService.storage = userStorage;
         userDto1 = new UserDto(1L, "userDtoname1", "userDto1Email@email");
         userDto2 = new UserDto(2L, "userDtoname2", "userDto2Email@email");
 
@@ -67,7 +63,6 @@ class UserServiceTest {
 
         Mockito.verify(userStorage, Mockito.times(1))
                 .save(user1);
-
     }
 
     @Test
@@ -84,7 +79,6 @@ class UserServiceTest {
         userService.create(userDto1);
         UserDto userDtoNew = new UserDto(2L, null, null);
         UserDto update = userService.update(userDto1.getId(), userDtoNew);
-
     }
 
     @Test
@@ -121,8 +115,7 @@ class UserServiceTest {
         userService.create(userDto1);
         userService.delete(1L);
 
-        assertEquals(userService.getAll().size(),0);
-
+        assertEquals(userService.getAll().size(), 0);
     }
 
     @Test
@@ -130,7 +123,6 @@ class UserServiceTest {
         userService.create(userDto1);
         userService.create(userDto2);
         List<UserDto> userDtos = userService.getAll();
-
         userStorage.findAll();
 
         when(userStorage.findAll())
@@ -139,6 +131,5 @@ class UserServiceTest {
 
         Mockito.verify(userStorage, Mockito.times(1))
                 .findAll();
-
     }
 }

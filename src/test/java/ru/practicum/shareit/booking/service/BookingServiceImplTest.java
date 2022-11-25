@@ -16,12 +16,12 @@ import ru.practicum.shareit.item.dao.ItemStorage;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.mapper.ItemMapper;
 import ru.practicum.shareit.item.model.Item;
-import ru.practicum.shareit.item.service.ItemServiceImpl;
+import ru.practicum.shareit.item.service.ItemService;
 import ru.practicum.shareit.user.dao.UserStorage;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.mapper.UserMapper;
 import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.user.service.UserServiceImpl;
+import ru.practicum.shareit.user.service.UserService;
 import ru.practicum.shareit.validation.exception.NotFoundObjectException;
 import ru.practicum.shareit.validation.exception.ValidationException;
 
@@ -34,7 +34,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class BookingServiceImplTest {
-
     @Mock
     UserStorage userStorage;
     @Mock
@@ -42,26 +41,23 @@ class BookingServiceImplTest {
     @Mock
     private BookingStorage bookingStorage;
 
-    @Autowired
-    ItemServiceImpl itemService;
-    @Autowired
-    UserServiceImpl userService;
-    @Autowired
-    BookingServiceImpl bookingService;
+    ItemService itemService;
+    UserService userService;
+    BookingService bookingService;
 
     private User user1;
     private User user2;
     private UserDto userDto1;
     private UserDto userDto2;
     private ItemDto itemDto1;
-    private ItemDto itemDto2;
     private Item item1;
-    private Item item2;
     private BookingInputDto bookingInputDto;
     private BookingDto bookingDtoNew;
 
     @Autowired
-    public BookingServiceImplTest(UserStorage userStorage, ItemStorage itemStorage, BookingStorage bookingStorage, ItemServiceImpl itemService, UserServiceImpl userService, BookingServiceImpl bookingService) {
+    public BookingServiceImplTest(UserStorage userStorage, ItemStorage itemStorage,
+                                  BookingStorage bookingStorage, ItemService itemService,
+                                  UserService userService, BookingService bookingService) {
         this.userStorage = userStorage;
         this.itemStorage = itemStorage;
         this.bookingStorage = bookingStorage;
@@ -72,16 +68,14 @@ class BookingServiceImplTest {
 
     @BeforeEach
     void start() {
-        bookingService.storage = bookingStorage;
-        bookingService.userStorage = userStorage;
-        bookingService.itemStorage = itemStorage;
-
         LocalDateTime startLastBooking = LocalDateTime.now().minusDays(7);
         LocalDateTime endLastBooking = LocalDateTime.now().minusDays(3);
         LocalDateTime startNextBooking = LocalDateTime.now().plusDays(3);
         LocalDateTime endNextBooking = LocalDateTime.now().plusDays(7);
-        ItemDto.BookingDtoItem lastBooking = new ItemDto.BookingDtoItem(2L, startLastBooking, endLastBooking, 1L);
-        ItemDto.BookingDtoItem nextBooking = new ItemDto.BookingDtoItem(3L, startNextBooking, endNextBooking, 2L);
+        ItemDto.BookingDtoItem lastBooking = new ItemDto.BookingDtoItem(2L, startLastBooking,
+                endLastBooking, 1L);
+        ItemDto.BookingDtoItem nextBooking = new ItemDto.BookingDtoItem(3L, startNextBooking,
+                endNextBooking, 2L);
 
         userDto1 = new UserDto(1L, "userDtoname1", "userDto1Email@email");
         userDto2 = new UserDto(2L, "userDtoname2", "userDto2Email@email");
@@ -93,7 +87,8 @@ class BookingServiceImplTest {
                 nextBooking, null, null);
         item1 = ItemMapper.toItem(itemDto1);
 
-        bookingInputDto = new BookingInputDto(1L, item1.getId(), LocalDateTime.now().plusDays(9), LocalDateTime.now().plusDays(15));
+        bookingInputDto = new BookingInputDto(1L, item1.getId(), LocalDateTime.now().plusDays(9),
+                LocalDateTime.now().plusDays(15));
 
         userStorage.save(user1);
         userStorage.save(user2);
@@ -103,7 +98,6 @@ class BookingServiceImplTest {
         itemService.create(user1.getId(), itemDto1);
         bookingDtoNew = bookingService.create(bookingInputDto, user2.getId());
     }
-
 
     @Test
     void create() {
@@ -232,6 +226,5 @@ class BookingServiceImplTest {
     void update() {
         BookingDto bookingDtoUpdate = bookingService.update(bookingDtoNew.getId(), user1.getId(), true);
         assertEquals(bookingDtoUpdate.getStatus(), Status.APPROVED);
-
     }
 }

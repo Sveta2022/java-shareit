@@ -15,15 +15,11 @@ import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingInputDto;
 import ru.practicum.shareit.booking.service.BookingService;
 import ru.practicum.shareit.item.model.Item;
-
-
 import ru.practicum.shareit.user.model.User;
-
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
-
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -35,22 +31,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class BookingControllerTestMockMvc {
 
     @MockBean
-    BookingService bookingService;
-
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    ObjectMapper mapper;
-
-    BookingInputDto bookingInputDto1;
-    BookingInputDto bookingInputDto2;
-    BookingDto bookingDto1;
+    private BookingService bookingService;
+    private MockMvc mockMvc;
+    private ObjectMapper mapper;
+    private BookingInputDto bookingInputDto1;
+    private BookingInputDto bookingInputDto2;
+    private BookingDto bookingDto1;
     private BookingDto bookingDto2;
     private Item item1;
     private Item item2;
     private User user1;
     private User user2;
+
+    @Autowired
+    public BookingControllerTestMockMvc(BookingService bookingService, MockMvc mockMvc, ObjectMapper mapper) {
+        this.bookingService = bookingService;
+        this.mockMvc = mockMvc;
+        this.mapper = mapper;
+    }
 
     @BeforeEach
     void start() {
@@ -128,10 +126,8 @@ class BookingControllerTestMockMvc {
                 .andExpect(status().isOk())
                 .andExpect(content().json(mapper.writeValueAsString(bookingDto1)));
 
-
         Mockito.verify(bookingService, Mockito.times(1))
                 .create(any(), anyLong());
-
     }
 
     @Test
@@ -143,7 +139,6 @@ class BookingControllerTestMockMvc {
                         .header("X-Sharer-User-Id", user1.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().json(mapper.writeValueAsString(List.of(bookingDto1))));
-
 
         Mockito.verify(bookingService, Mockito.times(1))
                 .getAllByBooker(anyLong(), any(), anyInt(), anyInt());
@@ -172,11 +167,9 @@ class BookingControllerTestMockMvc {
                 .andExpect(status().isOk())
                 .andExpect(content().json(mapper.writeValueAsString(List.of(bookingDto1))));
 
-
         Mockito.verify(bookingService, Mockito.times(1))
                 .getAllByOwner(anyLong(), any(), anyInt(), anyInt());
     }
-
 
     @Test
     void getById() throws Exception {
@@ -187,7 +180,6 @@ class BookingControllerTestMockMvc {
                         .header("X-Sharer-User-Id", user1.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().json(mapper.writeValueAsString(bookingDto1)));
-
 
         Mockito.verify(bookingService, Mockito.times(1))
                 .getById(anyLong(), anyLong());
@@ -222,6 +214,5 @@ class BookingControllerTestMockMvc {
 
         Mockito.verify(bookingService, Mockito.times(1))
                 .update(anyLong(), anyLong(), anyBoolean());
-
     }
 }

@@ -17,10 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class UserStorageTest {
 
-    @Autowired
     private UserStorage userStorage;
     private final TestEntityManager em;
-
     private User user1;
     private User user2;
 

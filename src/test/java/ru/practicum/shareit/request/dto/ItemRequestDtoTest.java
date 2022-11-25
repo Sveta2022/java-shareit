@@ -13,16 +13,18 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-
 @JsonTest
 class ItemRequestDtoTest {
 
-    @Autowired
     private JacksonTester<ItemRequestDto> json;
+    private ObjectMapper mapper;
+    private User user;
 
     @Autowired
-    ObjectMapper mapper;
-    User user;
+    public ItemRequestDtoTest(JacksonTester<ItemRequestDto> json, ObjectMapper mapper) {
+        this.json = json;
+        this.mapper = mapper;
+    }
 
     @Test
     void testItemRequestDto() throws Exception {
@@ -31,5 +33,4 @@ class ItemRequestDtoTest {
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(itemRequestDto.getId().intValue());
         assertThat(result).extractingJsonPathStringValue("$.description").isEqualTo(itemRequestDto.getDescription());
     }
-
 }

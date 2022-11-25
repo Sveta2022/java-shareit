@@ -32,16 +32,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ItemRequestControllerTestMockMvc {
 
     @MockBean
-    RequestService requestService;
+    private RequestService requestService;
 
-    @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
-    @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
-    ItemRequestDto itemRequestDto1;
+    private ItemRequestDto itemRequestDto1;
     private User user1;
+
+    @Autowired
+    public ItemRequestControllerTestMockMvc(RequestService requestService, MockMvc mockMvc, ObjectMapper mapper) {
+        this.requestService = requestService;
+        this.mockMvc = mockMvc;
+        this.mapper = mapper;
+    }
 
     @BeforeEach
     void start() {
@@ -76,7 +81,6 @@ class ItemRequestControllerTestMockMvc {
 
         Mockito.verify(requestService, Mockito.times(1))
                 .create(anyLong(), any());
-
     }
 
     @Test

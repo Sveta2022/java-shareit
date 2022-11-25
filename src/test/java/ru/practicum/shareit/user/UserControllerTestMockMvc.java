@@ -31,16 +31,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserControllerTestMockMvc {
 
     @MockBean
-    UserService userService;
-
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    ObjectMapper mapper;
+    private UserService userService;
+    private MockMvc mockMvc;
+    private ObjectMapper mapper;
 
     private UserDto userDto1;
     private UserDto userDto2;
+
+    @Autowired
+    public UserControllerTestMockMvc(UserService userService, MockMvc mockMvc, ObjectMapper mapper) {
+        this.userService = userService;
+        this.mockMvc = mockMvc;
+        this.mapper = mapper;
+    }
 
     @BeforeEach
     void start() {
@@ -65,7 +68,6 @@ class UserControllerTestMockMvc {
 
         Mockito.verify(userService, Mockito.times(1))
                 .create(userDto1);
-
     }
 
     @Test
@@ -83,7 +85,6 @@ class UserControllerTestMockMvc {
 
         Mockito.verify(userService, Mockito.never())
                 .create(userDto3);
-
     }
 
     @Test
@@ -140,7 +141,6 @@ class UserControllerTestMockMvc {
                 .update(userDto1.getId(), userDto2);
     }
 
-
     @Test
     void getByIdWithException() throws Exception {
         UserDto userDto99 = new UserDto(99L, "user99", "user99@mail.ru");
@@ -155,7 +155,5 @@ class UserControllerTestMockMvc {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().is(404));
-
-
     }
 }
