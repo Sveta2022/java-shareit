@@ -44,8 +44,8 @@ class UserControllerTestMockMvc {
 
     @BeforeEach
     void start() {
-        userDto1 = new UserDto(1L, "user1", "user1@u@mail.ru");
-        userDto2 = new UserDto(2L, "user2", "user1@u@mail.ru");
+        userDto1 = new UserDto(1L, "user1", "user1@email.ru");
+        userDto2 = new UserDto(2L, "user2", "user2@email.ru");
     }
 
     @Test
