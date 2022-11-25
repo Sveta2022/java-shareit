@@ -34,7 +34,7 @@ class UserControllerTest {
     @Test
     void create() {
         UserDto userDtoNew1 = userController.create(userDto1);
-        assertEquals(userDtoNew1.getName(), userDto1.getName());
+        assertEquals(userDto1.getName(), userDtoNew1.getName());
     }
 
     @Test

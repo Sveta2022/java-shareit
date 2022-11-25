@@ -76,10 +76,4 @@ public class BookingController {
         log.info("Запрос на обновление бронирование с id " + bookingId + " создан");
         return service.update(bookingId, userId, approved);
     }
-
-    @DeleteMapping("/{bookingId}")
-    public void delete(@PathVariable Long bookingId) {
-        log.info("Запрос на удаление бронирования с id " + bookingId + " создан");
-        service.delete(bookingId);
-    }
 }

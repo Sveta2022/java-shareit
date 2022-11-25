@@ -27,7 +27,6 @@ public class ItemController {
     @PostMapping
     public ItemDto create(@Validated({Create.class}) @RequestHeader("X-Sharer-User-Id") Long userId,
                           @Validated({Create.class}) @RequestBody ItemDto itemDto) {
-        System.out.println(itemDto);
         log.info("Запрос на создание вещи для пользователя " + userId + " создан");
         return service.create(userId, itemDto);
     }
@@ -40,12 +39,6 @@ public class ItemController {
         return service.update(id, itemDto, userId);
     }
 
-    @DeleteMapping
-    public void delete(@PathVariable long id,
-                       @RequestHeader("X-Sharer-User-Id") Long userId) {
-        log.info("Запрос на удаление вещи с id " + id + " создан");
-        service.delete(id, userId);
-    }
 
     @GetMapping
     public List<ItemDto> getAll(@RequestHeader("X-Sharer-User-Id") Long userId,

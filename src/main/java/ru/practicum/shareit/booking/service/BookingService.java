@@ -19,6 +19,4 @@ public interface BookingService {
 
     BookingDto update(Long bookingId, Long userId, Boolean approved);
 
-    void delete(Long id);
-
 }

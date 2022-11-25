@@ -34,11 +34,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ItemServiceImpl implements ItemService {
-    private ItemStorage storage;
-    private UserStorage userStorage;
-    private CommentStorage commentStorage;
-    private BookingStorage bookingStorage;
-    private RequestStorage requestStorage;
+    ItemStorage storage;
+    UserStorage userStorage;
+    CommentStorage commentStorage;
+    BookingStorage bookingStorage;
+    RequestStorage requestStorage;
 
     @Autowired
     public ItemServiceImpl(ItemStorage storage, UserStorage userStorage, CommentStorage commentStorage, BookingStorage bookingStorage, RequestStorage requestStorage) {
@@ -52,7 +52,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional
     public ItemDto create(Long userId, ItemDto itemDto) {
-        System.out.println(itemDto);
         Item item = ItemMapper.toItem(itemDto);
         User user = userStorage.findById(userId).get();
         item.setOwner(user);
@@ -215,12 +214,6 @@ public class ItemServiceImpl implements ItemService {
         return ItemMapper.toDto(storage.save(itemNew));
     }
 
-    @Override
-    @Transactional
-    public void delete(Long id, Long userId) {
-        Item item = ItemMapper.toItem(getById(id, userId));
-        storage.delete(item);
-    }
 
     @Override
     public List<ItemDto> search(String text, int from, int size) {

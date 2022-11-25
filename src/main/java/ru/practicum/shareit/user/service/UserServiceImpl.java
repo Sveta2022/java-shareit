@@ -1,6 +1,7 @@
 package ru.practicum.shareit.user.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +17,11 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Setter
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
-    private UserStorage storage;
+    UserStorage storage;
 
     @Autowired
     public UserServiceImpl(UserStorage storage) {

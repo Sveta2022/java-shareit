@@ -69,6 +69,24 @@ class UserControllerTestMockMvc {
     }
 
     @Test
+    void createWrongRequst() throws Exception {
+        UserDto userDto3 = new UserDto();
+        when(userService.create(any()))
+                .thenReturn(userDto3);
+
+        mockMvc.perform(post("/users")
+                        .content(mapper.writeValueAsString(userDto3))
+                        .characterEncoding(StandardCharsets.UTF_8)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(400));
+
+        Mockito.verify(userService, Mockito.never())
+                .create(userDto3);
+
+    }
+
+    @Test
     void getAll() throws Exception {
         when(userService.getAll())
                 .thenReturn(List.of(userDto1, userDto2));

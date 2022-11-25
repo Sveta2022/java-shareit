@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class BookingServiceImpl implements BookingService {
 
-    private BookingStorage storage;
-    private ItemStorage itemStorage;
-    private UserStorage userStorage;
+    BookingStorage storage;
+    ItemStorage itemStorage;
+    UserStorage userStorage;
 
     @Autowired
     public BookingServiceImpl(BookingStorage storage, ItemStorage itemStorage, UserStorage userStorage) {
@@ -178,14 +178,6 @@ public class BookingServiceImpl implements BookingService {
         return BookingMapper.toDto(storage.save(booking));
     }
 
-    @Override
-    @Transactional
-    public void delete(Long id) {
-        Booking booking = storage.findById(id)
-                .orElseThrow(() -> new NotFoundObjectException("Бронирование с id " + id + " не зарегестрирован"));
-            storage.delete(booking);
-    }
-
     private void validBookingDate(BookingInputDto bookingInputDto) {
         LocalDateTime start = bookingInputDto.getStart();
         LocalDateTime end = bookingInputDto.getEnd();
@@ -194,3 +186,4 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 }
+
