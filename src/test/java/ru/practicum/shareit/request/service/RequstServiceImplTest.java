@@ -21,6 +21,7 @@ import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.mapper.UserMapper;
 import ru.practicum.shareit.user.model.User;
 import ru.practicum.shareit.user.service.UserServiceImpl;
+import ru.practicum.shareit.validation.exception.NotFoundObjectException;
 import ru.practicum.shareit.validation.exception.ValidationException;
 
 import java.time.LocalDateTime;
@@ -118,6 +119,15 @@ class RequstServiceImplTest {
     @Test
     void create() {
         assertEquals(requestDtoNew.getId(), itemRequest1.getId());
+    }
+
+    @Test
+    void createWrongUser() {
+
+        final NotFoundObjectException exception = assertThrows(NotFoundObjectException.class,
+                () -> requstService.create(99L, itemRequestDto1));
+
+        assertEquals("Пользователь с id " + 99L + " не зарегестрирован", exception.getMessage());
     }
 
     @Test
