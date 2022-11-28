@@ -78,22 +78,22 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> bookings = new ArrayList<>();
         switch (state) {
             case ALL:
-                bookings = storage.findAllByBookerIdOrderByStartDesc(userId,pageRequest);
+                bookings = storage.findAllByBookerIdOrderByStartDesc(userId, pageRequest);
                 break;
             case CURRENT:
-                bookings = storage.findAllByBookerCurrent(userId, LocalDateTime.now(),pageRequest);
+                bookings = storage.findAllByBookerCurrent(userId, LocalDateTime.now(), pageRequest);
                 break;
             case PAST:
-                bookings = storage.findAllByBookerIdAndEndBeforeOrderByIdDesc(userId, LocalDateTime.now(),pageRequest);
+                bookings = storage.findAllByBookerIdAndEndBeforeOrderByIdDesc(userId, LocalDateTime.now(), pageRequest);
                 break;
             case FUTURE:
-                bookings = storage.findAllByBookerIdAndStartAfterOrderByStartDesc(userId, LocalDateTime.now(),pageRequest);
+                bookings = storage.findAllByBookerIdAndStartAfterOrderByStartDesc(userId, LocalDateTime.now(), pageRequest);
                 break;
             case WAITING:
-                bookings = storage.findAllByBookerIdState(userId, Status.WAITING.toString(),pageRequest);
+                bookings = storage.findAllByBookerIdState(userId, Status.WAITING.toString(), pageRequest);
                 break;
             case REJECTED:
-                bookings = storage.findAllByBookerIdState(userId, Status.REJECTED.toString(),pageRequest);
+                bookings = storage.findAllByBookerIdState(userId, Status.REJECTED.toString(), pageRequest);
                 break;
         }
         if (bookings != null) {
@@ -114,22 +114,22 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> bookings = new ArrayList<>();
         switch (state) {
             case ALL:
-                bookings = storage.findAllByOwnerIdOrderByStartDesc(userId,pageRequest);
+                bookings = storage.findAllByOwnerIdOrderByStartDesc(userId, pageRequest);
                 break;
             case CURRENT:
-                bookings = storage.findAllByOwnerIdCurrent(userId, LocalDateTime.now(),pageRequest);
+                bookings = storage.findAllByOwnerIdCurrent(userId, LocalDateTime.now(), pageRequest);
                 break;
             case PAST:
-                bookings = storage.findAllByOwnerIdStatePast(userId, LocalDateTime.now(),pageRequest);
+                bookings = storage.findAllByOwnerIdStatePast(userId, LocalDateTime.now(), pageRequest);
                 break;
             case FUTURE:
-                bookings = storage.findAllByOwnerIdStateFuture(userId, LocalDateTime.now(),pageRequest);
+                bookings = storage.findAllByOwnerIdStateFuture(userId, LocalDateTime.now(), pageRequest);
                 break;
             case WAITING:
-                bookings = storage.findAllByOwnerIdState(userId, Status.WAITING.toString(),pageRequest);
+                bookings = storage.findAllByOwnerIdState(userId, Status.WAITING.toString(), pageRequest);
                 break;
             case REJECTED:
-                bookings = storage.findAllByOwnerIdState(userId, Status.REJECTED.toString(),pageRequest);
+                bookings = storage.findAllByOwnerIdState(userId, Status.REJECTED.toString(), pageRequest);
                 break;
         }
         return bookings.stream().map(BookingMapper::toDto).collect(Collectors.toList());

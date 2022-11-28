@@ -23,7 +23,7 @@ public class ItemRequest {
     @Column(name = "description", nullable = false, length = 200)
     private String description;
 
-    @OneToOne(orphanRemoval = true, cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "requestor_id")
     private User requestor;
 

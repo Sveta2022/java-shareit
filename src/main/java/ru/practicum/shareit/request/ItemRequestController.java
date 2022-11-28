@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class ItemRequestController {
-    RequestService service;
+   private RequestService service;
 
     @Autowired
     public ItemRequestController(RequestService service) {

@@ -35,7 +35,7 @@ public class Item {
     @Column(name = "is_available", nullable = false)
     private Boolean available;
 
-    @OneToOne(orphanRemoval = true, cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "request_id")
     private ItemRequest itemRequest;
 }

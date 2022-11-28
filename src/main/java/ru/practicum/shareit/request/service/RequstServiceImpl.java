@@ -63,17 +63,8 @@ public class RequstServiceImpl implements RequestService {
             Long idRequestDto = requestDto.getId();
             if (idRequestDto != 0) {
                 List<Item> items = itemStorage.findByIdRequest(idRequestDto);
-                List<ItemRequestDto.ItemAnswerDto> newItemList = new ArrayList<>();
-                for (Item item : items) {
-                    newItemList.add(ItemRequestDto.ItemAnswerDto.builder()
-                            .id(item.getId())
-                            .name(item.getName())
-                            .idOwner(item.getOwner().getId())
-                            .requestId(item.getItemRequest().getId())
-                            .description(item.getDescription())
-                            .available(item.getAvailable())
-                            .build());
-                }
+                List<ItemRequestDto.ItemAnswerDto> newItemList =
+                        RequestMapper.itemRequestDtoWithAnswer(requestDto, items);
                 requestDto.setItems(newItemList);
                 requestDtosWithAnswer.add(requestDto);
             }
@@ -90,17 +81,8 @@ public class RequstServiceImpl implements RequestService {
                 .orElseThrow(() -> new NotFoundObjectException("Запрос с id " + id + " не найден"));
         ItemRequestDto requestDto = RequestMapper.toDto(request);
         List<Item> items = itemStorage.findByIdRequest(requestDto.getId());
-        List<ItemRequestDto.ItemAnswerDto> newItemList = new ArrayList<>();
-        for (Item item : items) {
-            newItemList.add(ItemRequestDto.ItemAnswerDto.builder()
-                    .id(item.getId())
-                    .name(item.getName())
-                    .idOwner(item.getOwner().getId())
-                    .requestId(item.getItemRequest().getId())
-                    .description(item.getDescription())
-                    .available(item.getAvailable())
-                    .build());
-        }
+        List<ItemRequestDto.ItemAnswerDto> newItemList =
+                RequestMapper.itemRequestDtoWithAnswer(requestDto, items);
         requestDto.setItems(newItemList);
         return requestDto;
     }
@@ -117,7 +99,6 @@ public class RequstServiceImpl implements RequestService {
         final PageRequest pageRequest = PageRequest.of(page, size, sortByCreated);
         List<ItemRequest> itemRequests = storage.findAllByUserID(userId, pageRequest)
                 .stream().collect(Collectors.toList());
-
         List<ItemRequestDto> requestDtos = itemRequests.stream()
                 .map(RequestMapper::toDto).collect(Collectors.toList());
         List<ItemRequestDto> requestDtosWithAnswer = new ArrayList<>();
@@ -125,17 +106,8 @@ public class RequstServiceImpl implements RequestService {
             Long idRequestDto = requestDto.getId();
             if (idRequestDto != 0) {
                 List<Item> items = itemStorage.findByIdRequest(idRequestDto);
-                List<ItemRequestDto.ItemAnswerDto> newItemList = new ArrayList<>();
-                for (Item item : items) {
-                    newItemList.add(ItemRequestDto.ItemAnswerDto.builder()
-                            .id(item.getId())
-                            .name(item.getName())
-                            .idOwner(item.getOwner().getId())
-                            .requestId(item.getItemRequest().getId())
-                            .description(item.getDescription())
-                            .available(item.getAvailable())
-                            .build());
-                }
+                List<ItemRequestDto.ItemAnswerDto> newItemList =
+                        RequestMapper.itemRequestDtoWithAnswer(requestDto, items);
                 requestDto.setItems(newItemList);
                 requestDtosWithAnswer.add(requestDto);
             }
