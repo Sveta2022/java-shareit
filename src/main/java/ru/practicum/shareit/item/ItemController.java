@@ -12,7 +12,6 @@ import ru.practicum.shareit.validation.Create;
 
 import java.util.List;
 
-
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -40,17 +39,13 @@ public class ItemController {
         return service.update(id, itemDto, userId);
     }
 
-    @DeleteMapping
-    public void delete(@PathVariable long id,
-                       @RequestHeader("X-Sharer-User-Id") Long userId) {
-        log.info("Запрос на удаление вещи с id " + id + " создан");
-        service.delete(id, userId);
-    }
 
     @GetMapping
-    public List<ItemDto> getAll(@RequestHeader("X-Sharer-User-Id") Long userId) {
+    public List<ItemDto> getAll(@RequestHeader("X-Sharer-User-Id") Long userId,
+                                @RequestParam(name = "from", defaultValue = "0") int from,
+                                @RequestParam(name = "size", defaultValue = "10") int size) {
         log.info("Запрос на получение списка всех вещей пользователя с id " + userId + " создан");
-        return service.getAll(userId);
+        return service.getAll(userId, from, size);
     }
 
     @GetMapping("/{id}")
@@ -62,9 +57,11 @@ public class ItemController {
 
     @GetMapping("/search")
     @ResponseBody
-    public List<ItemDto> search(@RequestParam(name = "text") String text) {
+    public List<ItemDto> search(@RequestParam(name = "text") String text,
+                                @RequestParam(name = "from", defaultValue = "0") int from,
+                                @RequestParam(name = "size", defaultValue = "10") int size) {
         log.info("Запрос на поиск вещей по тексту " + text + " создан");
-        return service.search(text);
+        return service.search(text, from, size);
     }
 
     @PostMapping("/{itemId}/comment")

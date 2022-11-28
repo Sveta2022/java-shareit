@@ -1,7 +1,6 @@
 package ru.practicum.shareit.item.dto;
 
 import lombok.*;
-import org.apache.coyote.Request;
 import org.hibernate.validator.constraints.Length;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
@@ -36,13 +35,13 @@ public class ItemDto {
     @NotNull(groups = Create.class)
     private Boolean available;
 
-    private Request request;
-
     private BookingDtoItem lastBooking = null;
 
     private BookingDtoItem nextBooking = null;
 
     private List<CommentDto> comments = new ArrayList<>();
+
+    private Long requestId;
 
     @Getter
     @Setter

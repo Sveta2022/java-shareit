@@ -1,4 +1,4 @@
-package ru.practicum.shareit.request.exception;
+package ru.practicum.shareit.validation.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -32,13 +32,13 @@ public class ErrorHandler {
                 HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<Map<String, String>> handleAllOther(final AllOtherException a) {
-        log.warn("409 {}", a.getMessage(), a);
-        return new ResponseEntity<>(
-                Map.of("error", a.getMessage()),
-                HttpStatus.CONFLICT);
-    }
+//    @ExceptionHandler
+//    public ResponseEntity<Map<String, String>> handleAllOther(final AllOtherException a) {
+//        log.warn("409 {}", a.getMessage(), a);
+//        return new ResponseEntity<>(
+//                Map.of("error", a.getMessage()),
+//                HttpStatus.CONFLICT);
+//    }
 
     @ExceptionHandler
     public ResponseEntity<Map<String, String>> handleAllIlligal(final NoligalArgumentException nL) {

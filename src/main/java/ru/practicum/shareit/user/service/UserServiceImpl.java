@@ -1,10 +1,11 @@
 package ru.practicum.shareit.user.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.shareit.request.exception.NotFoundObjectException;
+import ru.practicum.shareit.validation.exception.NotFoundObjectException;
 import ru.practicum.shareit.user.dao.UserStorage;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.mapper.UserMapper;
@@ -12,11 +13,11 @@ import ru.practicum.shareit.user.model.User;
 
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Setter
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
@@ -51,11 +52,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(Long id) {
-        Optional<User> user = storage.findById(id);
-        if (user.isPresent()) {
-            return UserMapper.toDto(user.get());
-        }
-        throw new NotFoundObjectException("Пользователя с id " + id + " не зарегестрирован");
+        User user = storage.findById(id)
+                .orElseThrow(() -> new NotFoundObjectException("Пользователя с id " + id + " не зарегестрирован"));
+            return UserMapper.toDto(user);
     }
 
     @Transactional
@@ -71,6 +70,6 @@ public class UserServiceImpl implements UserService {
                 .map(UserMapper::toDto)
                 .collect(Collectors.toList());
     }
-        }
+}
 
 

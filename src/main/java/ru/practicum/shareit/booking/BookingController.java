@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.booking.dto.BookingInputDto;
 import ru.practicum.shareit.booking.service.BookingService;
-import ru.practicum.shareit.request.exception.NoligalArgumentException;
+import ru.practicum.shareit.validation.exception.NoligalArgumentException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -38,7 +38,9 @@ public class BookingController {
 
     @GetMapping
     public List<BookingDto> getAllforBooker(@RequestHeader("X-Sharer-User-Id") Long userId,
-                                            @RequestParam(name = "state", defaultValue = "ALL") String state) {
+                                            @RequestParam(name = "state", defaultValue = "ALL") String state,
+                                            @RequestParam(name = "from", defaultValue = "0") int from,
+                                            @RequestParam(name = "size", defaultValue = "10") int size) {
         log.info("Запрос на получить все бронирования для арендатора создан");
         BookingState bookingState;
         try {
@@ -46,16 +48,18 @@ public class BookingController {
         } catch (IllegalArgumentException e) {
             throw new NoligalArgumentException("Unknown state: " + state);
         }
-        return service.getAllByBooker(userId, bookingState);
+        return service.getAllByBooker(userId, bookingState, from, size);
     }
 
     @GetMapping("/owner")
     public List<BookingDto> getAllforOwner(@RequestHeader("X-Sharer-User-Id") Long userId,
-                                           @RequestParam(name = "state", defaultValue = "ALL") String state) {
+                                           @RequestParam(name = "state", defaultValue = "ALL") String state,
+                                           @RequestParam(name = "from", defaultValue = "0") int from,
+                                           @RequestParam(name = "size", defaultValue = "10") int size) {
         BookingState bookingState = BookingState.from(state)
                 .orElseThrow(() -> new NoligalArgumentException("Unknown state: " + state));
         log.info("Запрос на получить все бронирования для арендодателя создан");
-        return service.getAllByOwner(userId, bookingState);
+        return service.getAllByOwner(userId, bookingState,  from, size);
     }
 
     @GetMapping("/{bookingId}")
@@ -71,11 +75,5 @@ public class BookingController {
                              @RequestParam(defaultValue = "false") Boolean approved) {
         log.info("Запрос на обновление бронирование с id " + bookingId + " создан");
         return service.update(bookingId, userId, approved);
-    }
-
-    @DeleteMapping("/{bookingId}")
-    public void delete(@PathVariable Long bookingId) {
-        log.info("Запрос на удаление бронирования с id " + bookingId + " создан");
-        service.delete(bookingId);
     }
 }

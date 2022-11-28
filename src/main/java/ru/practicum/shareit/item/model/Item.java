@@ -1,7 +1,7 @@
 package ru.practicum.shareit.item.model;
 
 import lombok.*;
-import org.apache.coyote.Request;
+import ru.practicum.shareit.request.model.ItemRequest;
 import ru.practicum.shareit.user.model.User;
 
 
@@ -35,6 +35,7 @@ public class Item {
     @Column(name = "is_available", nullable = false)
     private Boolean available;
 
-    @Transient
-    private Request request;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "request_id")
+    private ItemRequest itemRequest;
 }
