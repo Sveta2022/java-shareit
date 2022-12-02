@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BookingController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ShareIt Server</a> &gt; <a href="index.source.html" class="el_package">ru.practicum.shareit.booking</a> &gt; <span class="el_source">BookingController.java</span></div><h1>BookingController.java</h1><pre class="source lang-java linenums">package ru.practicum.shareit.booking;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.booking.dto.BookingDto;
+import ru.practicum.shareit.booking.dto.BookingInputDto;
+import ru.practicum.shareit.booking.service.BookingService;
+import ru.practicum.shareit.validation.exception.NoligalArgumentException;
+
+
+import java.util.List;
+
+
+/**
+ * add-bookings
+ */
+@RestController
+@RequestMapping(path = &quot;/bookings&quot;)
+<span class="fc" id="L21">@Slf4j</span>
+@RequiredArgsConstructor
+public class BookingController {
+    private BookingService service;
+
+    @Autowired
+<span class="fc" id="L27">    public BookingController(BookingService service) {</span>
+<span class="fc" id="L28">        this.service = service;</span>
+<span class="fc" id="L29">    }</span>
+
+    @PostMapping
+    public BookingDto create(@RequestBody BookingInputDto bookingInputDto,
+                             @RequestHeader(&quot;X-Sharer-User-Id&quot;) Long bookerId) {
+<span class="fc" id="L34">        log.info(&quot;Запрос на добавление бронирования с id &quot; + bookingInputDto.getId() + &quot; создан&quot;);</span>
+<span class="fc" id="L35">        return service.create(bookingInputDto, bookerId);</span>
+    }
+
+    @GetMapping
+    public List&lt;BookingDto&gt; getAllforBooker(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                                            @RequestParam(name = &quot;state&quot;, defaultValue = &quot;ALL&quot;) String stateParam,
+                                            @RequestParam(name = &quot;from&quot;, defaultValue = &quot;0&quot;) int from,
+                                            @RequestParam(name = &quot;size&quot;, defaultValue = &quot;10&quot;) int size) {
+<span class="fc" id="L43">        BookingState state = BookingState.from(stateParam)</span>
+<span class="fc" id="L44">                .orElseThrow(() -&gt; new NoligalArgumentException(&quot;Unknown state: &quot; + stateParam));</span>
+<span class="fc" id="L45">        log.info(&quot;Запрос на получить все бронирования для арендатора создан&quot;);</span>
+<span class="fc" id="L46">        return service.getAllByBooker(userId, stateParam, from, size);</span>
+    }
+
+    @GetMapping(&quot;/owner&quot;)
+    public List&lt;BookingDto&gt; getAllforOwner(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                                           @RequestParam(name = &quot;state&quot;, defaultValue = &quot;ALL&quot;) String stateParam,
+                                           @RequestParam(name = &quot;from&quot;, defaultValue = &quot;0&quot;) int from,
+                                           @RequestParam(name = &quot;size&quot;, defaultValue = &quot;10&quot;) int size) {
+<span class="fc" id="L54">        BookingState state = BookingState.from(stateParam)</span>
+<span class="pc" id="L55">                .orElseThrow(() -&gt; new NoligalArgumentException(&quot;Unknown state: &quot; + stateParam));</span>
+
+<span class="fc" id="L57">        log.info(&quot;Запрос на получить все бронирования для арендодателя создан&quot;);</span>
+<span class="fc" id="L58">        return service.getAllByOwner(userId, stateParam,  from, size);</span>
+    }
+
+    @GetMapping(&quot;/{bookingId}&quot;)
+    public BookingDto getById(@PathVariable Long bookingId,
+                              @RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId) {
+<span class="fc" id="L64">        log.info(&quot;Запрос на получение бронирования по id &quot; + bookingId + &quot; создан&quot;);</span>
+<span class="fc" id="L65">        return service.getById(bookingId, userId);</span>
+    }
+
+    @PatchMapping(&quot;/{bookingId}&quot;)
+    public BookingDto update(@PathVariable Long bookingId,
+                             @RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                             @RequestParam(defaultValue = &quot;false&quot;) Boolean approved) {
+<span class="fc" id="L72">        log.info(&quot;Запрос на обновление бронирование с id &quot; + bookingId + &quot; создан&quot;);</span>
+<span class="fc" id="L73">        return service.update(bookingId, userId, approved);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

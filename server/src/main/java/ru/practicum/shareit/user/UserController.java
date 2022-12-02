@@ -1,0 +1,55 @@
+package ru.practicum.shareit.user;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.user.dto.UserDto;
+import ru.practicum.shareit.user.service.UserService;
+
+
+import java.util.List;
+
+@Slf4j
+@RequiredArgsConstructor
+@RestController
+@RequestMapping(path = "/users")
+public class UserController {
+    private UserService service;
+
+    @Autowired
+    public UserController(UserService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public UserDto create(@RequestBody UserDto userDto) {
+        log.info("Запрос на добавление пользователя " + userDto.getName() + " id " + userDto.getId() + " создан");
+        return service.create(userDto);
+    }
+
+    @GetMapping
+    public List<UserDto> getAll() {
+        log.info("Запрос на получить всех пользователей создан");
+        return service.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public UserDto getById(@PathVariable Long id) {
+        log.info("Запрос на получение пользователя по id " + id + " создан");
+        return service.getById(id);
+    }
+
+    @PatchMapping("/{id}")
+    public UserDto update(@RequestBody UserDto userDto,
+                          @PathVariable Long id) {
+        log.info("Запрос на обновление пользователя " + userDto.getName() + " id " + userDto.getId() + " создан");
+        return service.update(id, userDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        log.info("Запрос на обновление пользователя с id " + id + " создан");
+        service.delete(id);
+    }
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ErrorHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ShareIt Server</a> &gt; <a href="index.source.html" class="el_package">ru.practicum.shareit.validation.exception</a> &gt; <span class="el_source">ErrorHandler.java</span></div><h1>ErrorHandler.java</h1><pre class="source lang-java linenums">package ru.practicum.shareit.validation.exception;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.practicum.shareit.booking.BookingController;
+import ru.practicum.shareit.item.ItemController;
+import ru.practicum.shareit.request.ItemRequestController;
+import ru.practicum.shareit.user.UserController;
+
+import java.util.Map;
+
+@RestControllerAdvice(assignableTypes = {UserController.class, ItemController.class, BookingController.class,
+        ItemRequestController.class})
+<span class="fc" id="L17">@Slf4j</span>
+<span class="fc" id="L18">public class ErrorHandler {</span>
+    @ExceptionHandler
+    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidation(final ValidationException v) {
+<span class="nc" id="L21">        log.warn(&quot;400 {}&quot;, v.getMessage(), v);</span>
+<span class="nc" id="L22">        return new ResponseEntity&lt;&gt;(</span>
+<span class="nc" id="L23">                Map.of(&quot;error&quot;, v.getMessage()),</span>
+                HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleNotFound(final NotFoundObjectException n) {
+<span class="nc" id="L29">        log.warn(&quot;404 {}&quot;, n.getMessage(), n);</span>
+<span class="nc" id="L30">        return new ResponseEntity&lt;&gt;(</span>
+<span class="nc" id="L31">                Map.of(&quot;error&quot;, n.getMessage()),</span>
+                HttpStatus.NOT_FOUND);
+    }
+
+//    @ExceptionHandler
+//    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleAllOther(final AllOtherException a) {
+//        log.warn(&quot;409 {}&quot;, a.getMessage(), a);
+//        return new ResponseEntity&lt;&gt;(
+//                Map.of(&quot;error&quot;, a.getMessage()),
+//                HttpStatus.CONFLICT);
+//    }
+
+    @ExceptionHandler
+    public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleAllIlligal(final NoligalArgumentException nL) {
+<span class="nc" id="L45">        log.warn(&quot;500 {}&quot;, nL.getMessage(), nL);</span>
+<span class="nc" id="L46">        return new ResponseEntity&lt;&gt;(</span>
+<span class="nc" id="L47">                Map.of(&quot;error&quot;, nL.getMessage()),</span>
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

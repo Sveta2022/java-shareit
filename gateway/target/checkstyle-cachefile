@@ -1,0 +1,25 @@
+#Fri Dec 02 13:59:12 MSK 2022
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/Create.java=1669904297762
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/booking/BookingClient.java=1669929581003
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/exception/Create.java=1669972219166
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/exception/Update.java=1669972219166
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/exception/exception/AllOtherException.java=1669972219166
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/exception/exception/NoligalArgumentException.java=1669972219166
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/exception/exception/NotFoundObjectException.java=1669972219166
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/exception/exception/ValidationException.java=1669972219166
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/item/ItemClient.java=1669847152025
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java=1668167307184
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java=1669834380714
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/item/model/Comment.java=1669847028510
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/item/model/Item.java=1669847003627
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/request/ItemRequestClient.java=1669847152037
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/request/ItemRequestController.java=1669929580987
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java=1669846120965
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java=1669627961088
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/user/UserClient.java=1669847152010
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/user/UserController.java=1669847152017
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/user/dto/UserDto.java=1669834293117
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/java/ru/practicum/shareit/user/model/User.java=1669834380692
+/Users/konstantinyakovlev/dev/java-shareit/gateway/src/main/resources/application.properties=1669760313870
+configuration*?=BF12596FA14963B1121C7F41D9F0D354D3309280
+module-resource*?\:suppressions.xml=B6C56B864127A55986A2D096B53D68E97E9F54B7

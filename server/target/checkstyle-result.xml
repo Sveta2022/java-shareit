@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="10.3">
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/ShareItServer.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/dto/BookingInputDto.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/dto/BookingDto.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/Status.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/dao/BookingStorage.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/mapper/BookingMapper.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/BookingState.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/model/Booking.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/service/BookingService.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/booking/BookingController.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/user/dto/UserDto.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/user/dao/UserStorage.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/user/mapper/UserMapper.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/user/model/User.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/user/service/UserService.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/user/service/UserServiceImpl.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/user/UserController.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/dao/ItemStorage.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/dao/CommentStorage.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/mapper/CommentMapper.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/mapper/ItemMapper.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/model/Comment.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/model/Item.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/service/ItemService.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/item/ItemController.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/request/dao/RequestStorage.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/request/mapper/RequestMapper.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/request/service/RequestService.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/request/service/RequstServiceImpl.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/validation/exception/ValidationException.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/validation/exception/NoligalArgumentException.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/validation/exception/AllOtherException.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/validation/exception/ErrorHandler.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/java/ru/practicum/shareit/validation/exception/NotFoundObjectException.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/ShareItTests.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/booking/dto/BookingDtoTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/booking/BookingControllerTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/booking/dao/BookingStorageTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/booking/service/BookingServiceImplTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/booking/BookingControllerTestMockMvc.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/user/dto/UserDtoTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/user/UserControllerTestMockMvc.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/user/dao/UserStorageTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/user/UserControllerTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/user/service/UserServiceTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/item/dto/ItemDtoTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/item/ItemControllerTestMockMvc.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/item/ItemControllerTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/item/dao/CommentStorageTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/item/dao/ItemStorageTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/item/service/ItemServiceTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/request/dto/ItemRequestDtoTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/request/service/RequstServiceTest.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/test/java/ru/practicum/shareit/request/ItemRequestControllerTestMockMvc.java">
+</file>
+<file name="/Users/konstantinyakovlev/dev/java-shareit/server/src/main/resources/application.properties">
+</file>
+</checkstyle>

@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5c903b20-f2b7-4748-8957-0ad4fac912a4" name="Changes" comment="fix: add-docker">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/exception/AllOtherException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/exception/ErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/exception/NoligalArgumentException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/exception/NotFoundObjectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/exception/ValidationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/Create.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exception/Create.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exception/Update.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exception/exception/AllOtherException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exception/exception/ErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exception/exception/NoligalArgumentException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exception/exception/NotFoundObjectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/exception/exception/ValidationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/model/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/item/model/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/request/ItemRequestClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/user/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/suppressions.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/checkstyle-cachefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/checkstyle-checker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/checkstyle-result.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/Create.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/ShareItGateway.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/booking/BookingClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/booking/BookingController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/booking/dto/BookItemRequestDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/booking/dto/BookingState.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/client/BaseClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/ItemClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/ItemController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/dto/CommentDto$CommentDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/dto/CommentDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/dto/ItemDto$BookingDtoItem$BookingDtoItemBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/dto/ItemDto$BookingDtoItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/dto/ItemDto$CommentDtoItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/dto/ItemDto$ItemDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/dto/ItemDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/model/Comment$CommentBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/model/Comment.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/model/Item$ItemBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/item/model/Item.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/ItemRequestClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/ItemRequestController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto$ItemAnswerDto$ItemAnswerDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto$ItemAnswerDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto$ItemRequestDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/model/ItemRequest$ItemRequestBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/request/model/ItemRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/user/UserClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/user/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/user/dto/UserDto$UserDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/user/dto/UserDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/user/model/User$UserBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/user/model/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/validation/Create.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/validation/Update.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/validation/exception/ErrorHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/validation/exception/NoligalArgumentException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/validation/exception/NotFoundObjectException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/classes/ru/practicum/shareit/validation/exception/ValidationException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/shareit-gateway-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/shareit-gateway-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/target/spotbugsXml.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/BookingState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dao/BookingStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/dto/BookingInputDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/mapper/BookingMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/model/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/booking/service/BookingServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/ItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dao/CommentStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dao/ItemStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/CommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/dto/ItemDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/mapper/CommentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/mapper/ItemMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/model/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/model/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/item/service/ItemServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/ItemRequestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/dao/RequestStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/dto/ItemRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/mapper/RequestMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/model/ItemRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/request/service/RequstServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dao/UserStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/user/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/validation/exception/AllOtherException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/validation/exception/ErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/validation/exception/NoligalArgumentException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/validation/exception/NotFoundObjectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/ru/practicum/shareit/validation/exception/ValidationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/ShareItTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/booking/BookingControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/booking/BookingControllerTestMockMvc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/booking/dao/BookingStorageTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/booking/dto/BookingDtoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/booking/service/BookingServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/item/ItemControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/item/ItemControllerTestMockMvc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/item/dao/CommentStorageTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/item/dao/ItemStorageTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/item/dto/ItemDtoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/item/service/ItemServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/request/ItemRequestControllerTestMockMvc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/request/dto/ItemRequestDtoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/request/service/RequstServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/user/UserControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/user/UserControllerTestMockMvc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/user/dao/UserStorageTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/user/dto/UserDtoTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/ru/practicum/shareit/user/service/UserServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/suppressions.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/checkstyle-cachefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/checkstyle-checker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/checkstyle-result.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/ShareItServer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/BookingController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/BookingState.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/Status.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dao/BookingStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingDto$BookingDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingDto$ItemInput$ItemInputBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingDto$ItemInput.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingDto$UserInput$UserInputBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingDto$UserInput.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingInputDto$BookingInputDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/dto/BookingInputDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/mapper/BookingMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/model/Booking$BookingBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/model/Booking.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/service/BookingService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/booking/service/BookingServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/ItemController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dao/CommentStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dao/ItemStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dto/CommentDto$CommentDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dto/CommentDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dto/ItemDto$BookingDtoItem$BookingDtoItemBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dto/ItemDto$BookingDtoItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dto/ItemDto$CommentDtoItem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dto/ItemDto$ItemDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/dto/ItemDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/mapper/CommentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/mapper/ItemMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/model/Comment$CommentBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/model/Comment.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/model/Item$ItemBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/model/Item.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/service/ItemService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/item/service/ItemServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/ItemRequestController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/dao/RequestStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto$ItemAnswerDto$ItemAnswerDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto$ItemAnswerDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto$ItemRequestDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/dto/ItemRequestDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/mapper/RequestMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/model/ItemRequest$ItemRequestBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/model/ItemRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/service/RequestService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/request/service/RequstServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/dao/UserStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/dto/UserDto$UserDtoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/dto/UserDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/mapper/UserMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/model/User$UserBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/model/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/service/UserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/user/service/UserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/validation/exception/ErrorHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/validation/exception/NoligalArgumentException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/validation/exception/NotFoundObjectException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/ru/practicum/shareit/validation/exception/ValidationException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/classes/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/jacoco.exec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/shareit-server-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/shareit-server-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/branchfc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/branchnc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/branchpc.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/bundle.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/class.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/down.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/greenbar.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/group.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/method.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/package.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/prettify.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/prettify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/redbar.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/report.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/report.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/session.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/sort.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/sort.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/source.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-resources/up.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco-sessions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/jacoco.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.mapper/BookingMapper.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.mapper/BookingMapper.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.mapper/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.mapper/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.service/BookingServiceImpl.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.service/BookingServiceImpl.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.service/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking.service/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/BookingController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/BookingController.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/BookingState.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/BookingState.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/Status.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/Status.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.booking/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.mapper/CommentMapper.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.mapper/CommentMapper.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.mapper/ItemMapper.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.mapper/ItemMapper.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.mapper/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.mapper/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.service/ItemServiceImpl.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.service/ItemServiceImpl.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.service/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item.service/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item/ItemController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item/ItemController.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.item/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.mapper/RequestMapper.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.mapper/RequestMapper.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.mapper/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.mapper/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.service/RequstServiceImpl.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.service/RequstServiceImpl.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.service/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request.service/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request/ItemRequestController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request/ItemRequestController.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.request/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.mapper/UserMapper.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.mapper/UserMapper.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.mapper/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.mapper/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.service/UserServiceImpl.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.service/UserServiceImpl.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.service/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user.service/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user/UserController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user/UserController.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.user/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/ErrorHandler.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/ErrorHandler.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/NoligalArgumentException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/NoligalArgumentException.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/NotFoundObjectException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/NotFoundObjectException.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/ValidationException.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/ValidationException.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit.validation.exception/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit/ShareItServer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit/ShareItServer.java.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/site/jacoco/ru.practicum.shareit/index.source.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/spotbugsXml.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.ShareItTests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.booking.BookingControllerTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.booking.dao.BookingStorageTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.booking.dto.BookingDtoTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.booking.service.BookingServiceImplTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.item.ItemControllerTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.item.dao.CommentStorageTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.item.dao.ItemStorageTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.item.dto.ItemDtoTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.item.service.ItemServiceTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.request.dto.ItemRequestDtoTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.request.service.RequstServiceTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.user.UserControllerTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.user.dao.UserStorageTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.user.dto.UserDtoTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/TEST-ru.practicum.shareit.user.service.UserServiceTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.ShareItTests.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.booking.BookingControllerTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.booking.dao.BookingStorageTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.booking.dto.BookingDtoTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.booking.service.BookingServiceImplTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.item.ItemControllerTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.item.dao.CommentStorageTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.item.dao.ItemStorageTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.item.dto.ItemDtoTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.item.service.ItemServiceTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.request.dto.ItemRequestDtoTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.request.service.RequstServiceTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.user.UserControllerTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.user.dao.UserStorageTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.user.dto.UserDtoTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/surefire-reports/ru.practicum.shareit.user.service.UserServiceTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/ShareItTests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/booking/BookingControllerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/booking/BookingControllerTestMockMvc.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/booking/dao/BookingStorageTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/booking/dto/BookingDtoTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/booking/service/BookingServiceImplTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/item/ItemControllerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/item/ItemControllerTestMockMvc.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/item/dao/CommentStorageTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/item/dao/ItemStorageTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/item/dto/ItemDtoTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/item/service/ItemServiceTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/request/ItemRequestControllerTestMockMvc.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/request/dto/ItemRequestDtoTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/request/service/RequstServiceTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/user/UserControllerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/user/UserControllerTestMockMvc.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/user/dao/UserStorageTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/user/dto/UserDtoTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/target/test-classes/ru/practicum/shareit/user/service/UserServiceTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/checkstyle-cachefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/checkstyle-checker.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/checkstyle-result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/ShareItGateway.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.run/ShareItGateway.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/BookingClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/BookingClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit/booking/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postman/sprint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="add-item-requests" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="enabledProfiles">
+      <list>
+        <option value="coverage" />
+        <option value="check" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2IKcOvprZSXjAmkXbgJdsoUBabC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/konstantinyakovlev/dev/java-shareit/server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "application.passwordSafe",
+    "spring.configuration.checksum": "e876c45eae7295f4a08705deaa2475c7"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/gateway" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/gateway/src/main/java/ru/practicum/shareit" />
+      <recent name="$PROJECT_DIR$/server/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserControllerTestMockMvc">
+    <configuration name="BookingControllerTest.getAllforBookerUnknownState" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.practicum.shareit.booking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.practicum.shareit.booking" />
+      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.booking.BookingControllerTest" />
+      <option name="METHOD_NAME" value="getAllforBookerUnknownState" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShareItTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.practicum.shareit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.practicum.shareit" />
+      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.ShareItTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTestMockMvc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.practicum.shareit.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.practicum.shareit.user" />
+      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.user.UserControllerTestMockMvc" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTestMockMvc.createWrongRequst" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.practicum.shareit.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.practicum.shareit.user" />
+      <option name="MAIN_CLASS_NAME" value="ru.practicum.shareit.user.UserControllerTestMockMvc" />
+      <option name="METHOD_NAME" value="createWrongRequst" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ru.practicum.shareit in shareit-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shareit-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.practicum.shareit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.practicum.shareit" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShareItApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="shareit" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.practicum.shareit.ShareItApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShareItGateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="shareit-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.practicum.shareit.ShareItGateway" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShareItServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="shareit-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.practicum.shareit.ShareItServer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserControllerTestMockMvc" />
+        <item itemvalue="JUnit.UserControllerTestMockMvc.createWrongRequst" />
+        <item itemvalue="JUnit.ru.practicum.shareit in shareit-server" />
+        <item itemvalue="JUnit.BookingControllerTest.getAllforBookerUnknownState" />
+        <item itemvalue="JUnit.ShareItTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c903b20-f2b7-4748-8957-0ad4fac912a4" name="Changes" comment="" />
+      <created>1669933689466</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1669933689466</updated>
+      <workItem from="1669933694920" duration="104000" />
+      <workItem from="1669933890504" duration="3079000" />
+      <workItem from="1669936983606" duration="1971000" />
+      <workItem from="1669972664364" duration="5918000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix: add-docker">
+      <created>1669935492251</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669935492253</updated>
+    </task>
+    <task id="LOCAL-00002" summary="bug: add-item-request">
+      <created>1669937048266</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669937048266</updated>
+    </task>
+    <task id="LOCAL-00003" summary="bug: add-item-request">
+      <created>1669937398701</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669937398701</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="bug: add-item-request" />
+    <MESSAGE value="fix: add-docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: add-docker" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/java_shareit$ru_practicum_shareit_in_shareit_server.ic" NAME="ru.practicum.shareit in shareit-server Coverage Results" MODIFIED="1669934539668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ru.practicum.shareit.*</FILTER>
+    </SUITE>
+  </component>
+</project>

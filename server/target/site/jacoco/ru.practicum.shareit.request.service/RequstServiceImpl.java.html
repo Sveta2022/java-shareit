@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RequstServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ShareIt Server</a> &gt; <a href="index.source.html" class="el_package">ru.practicum.shareit.request.service</a> &gt; <span class="el_source">RequstServiceImpl.java</span></div><h1>RequstServiceImpl.java</h1><pre class="source lang-java linenums">package ru.practicum.shareit.request.service;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.shareit.item.dao.ItemStorage;
+import ru.practicum.shareit.item.model.Item;
+import ru.practicum.shareit.request.dao.RequestStorage;
+import ru.practicum.shareit.request.dto.ItemRequestDto;
+import ru.practicum.shareit.validation.exception.NotFoundObjectException;
+import ru.practicum.shareit.validation.exception.ValidationException;
+import ru.practicum.shareit.request.mapper.RequestMapper;
+import ru.practicum.shareit.request.model.ItemRequest;
+import ru.practicum.shareit.user.dao.UserStorage;
+import ru.practicum.shareit.user.model.User;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class RequstServiceImpl implements RequestService {
+    private RequestStorage storage;
+    private UserStorage userStorage;
+    private ItemStorage itemStorage;
+
+    @Autowired
+<span class="fc" id="L35">    public RequstServiceImpl(RequestStorage storage, UserStorage userStorage, ItemStorage itemStorage) {</span>
+<span class="fc" id="L36">        this.storage = storage;</span>
+<span class="fc" id="L37">        this.userStorage = userStorage;</span>
+<span class="fc" id="L38">        this.itemStorage = itemStorage;</span>
+<span class="fc" id="L39">    }</span>
+
+    @Override
+    @Transactional
+    public ItemRequestDto create(Long userId, ItemRequestDto itemRequestDto) {
+<span class="fc" id="L44">        User userCreator = userStorage.findById(userId)</span>
+<span class="fc" id="L45">                .orElseThrow(() -&gt; new NotFoundObjectException(&quot;Пользователь с id &quot; + userId + &quot; не зарегестрирован&quot;));</span>
+<span class="fc" id="L46">        ItemRequest itemRequest = RequestMapper.toRequest(itemRequestDto);</span>
+<span class="fc" id="L47">        itemRequest.setRequestor(userCreator);</span>
+<span class="fc" id="L48">        itemRequest.setCreated(LocalDateTime.now());</span>
+<span class="fc" id="L49">        ItemRequest request = storage.save(itemRequest);</span>
+<span class="fc" id="L50">        itemRequestDto = RequestMapper.toDto(request);</span>
+<span class="fc" id="L51">        return itemRequestDto;</span>
+    }
+
+    @Override
+    public List&lt;ItemRequestDto&gt; getAll(Long userId) {
+<span class="fc" id="L56">        User userCreator = userStorage.findById(userId)</span>
+<span class="pc" id="L57">                .orElseThrow(() -&gt; new NotFoundObjectException(&quot;Пользователь с id &quot; + userId + &quot; не зарегестрирован&quot;));</span>
+<span class="fc" id="L58">        List&lt;ItemRequest&gt; requests = storage.findByUserId(userId);</span>
+<span class="fc" id="L59">        List&lt;ItemRequestDto&gt; requestDtos = requests.stream()</span>
+<span class="fc" id="L60">                .map(RequestMapper::toDto).collect(Collectors.toList());</span>
+<span class="fc" id="L61">        List&lt;ItemRequestDto&gt; requestDtosWithAnswer = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        for (ItemRequestDto requestDto : requestDtos) {</span>
+<span class="fc" id="L63">            Long idRequestDto = requestDto.getId();</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">            if (idRequestDto != 0) {</span>
+<span class="fc" id="L65">                List&lt;Item&gt; items = itemStorage.findByIdRequest(idRequestDto);</span>
+<span class="fc" id="L66">                List&lt;ItemRequestDto.ItemAnswerDto&gt; newItemList =</span>
+<span class="fc" id="L67">                        RequestMapper.itemRequestDtoWithAnswer(requestDto, items);</span>
+<span class="fc" id="L68">                requestDto.setItems(newItemList);</span>
+<span class="fc" id="L69">                requestDtosWithAnswer.add(requestDto);</span>
+            }
+<span class="fc" id="L71">        }</span>
+<span class="fc" id="L72">        return requestDtosWithAnswer;</span>
+    }
+
+    @Override
+    public ItemRequestDto getById(Long userId, Long id) {
+<span class="fc" id="L77">        User userCreator = userStorage.findById(userId)</span>
+<span class="pc" id="L78">                .orElseThrow(() -&gt; new NotFoundObjectException(&quot;Пользователь с id &quot; + userId + &quot; не зарегестрирован&quot;));</span>
+
+<span class="fc" id="L80">        ItemRequest request = storage.findById(id)</span>
+<span class="pc" id="L81">                .orElseThrow(() -&gt; new NotFoundObjectException(&quot;Запрос с id &quot; + id + &quot; не найден&quot;));</span>
+<span class="fc" id="L82">        ItemRequestDto requestDto = RequestMapper.toDto(request);</span>
+<span class="fc" id="L83">        List&lt;Item&gt; items = itemStorage.findByIdRequest(requestDto.getId());</span>
+<span class="fc" id="L84">        List&lt;ItemRequestDto.ItemAnswerDto&gt; newItemList =</span>
+<span class="fc" id="L85">                RequestMapper.itemRequestDtoWithAnswer(requestDto, items);</span>
+<span class="fc" id="L86">        requestDto.setItems(newItemList);</span>
+<span class="fc" id="L87">        return requestDto;</span>
+    }
+
+    @Override
+    public List&lt;ItemRequestDto&gt; getAllByPage(Long userId, Integer from, Integer size) {
+<span class="fc" id="L92">        User userCreator = userStorage.findById(userId)</span>
+<span class="pc" id="L93">                .orElseThrow(() -&gt; new NotFoundObjectException(&quot;Пользователь с id &quot; + userId + &quot; не зарегестрирован&quot;));</span>
+<span class="pc bpc" id="L94" title="1 of 4 branches missed.">        if (from &lt; 0 || size &lt;= 0) {</span>
+<span class="fc" id="L95">            throw new ValidationException(&quot;не верно указан количество позиций на странице&quot;);</span>
+        }
+<span class="fc" id="L97">        int page = from / size;</span>
+<span class="fc" id="L98">        Sort sortByCreated = Sort.by(Sort.Direction.DESC, &quot;created&quot;);</span>
+<span class="fc" id="L99">        final PageRequest pageRequest = PageRequest.of(page, size, sortByCreated);</span>
+<span class="fc" id="L100">        List&lt;ItemRequest&gt; itemRequests = storage.findAllByUserID(userId, pageRequest)</span>
+<span class="fc" id="L101">                .stream().collect(Collectors.toList());</span>
+<span class="fc" id="L102">        List&lt;ItemRequestDto&gt; requestDtos = itemRequests.stream()</span>
+<span class="fc" id="L103">                .map(RequestMapper::toDto).collect(Collectors.toList());</span>
+<span class="fc" id="L104">        List&lt;ItemRequestDto&gt; requestDtosWithAnswer = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        for (ItemRequestDto requestDto : requestDtos) {</span>
+<span class="fc" id="L106">            Long idRequestDto = requestDto.getId();</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">            if (idRequestDto != 0) {</span>
+<span class="fc" id="L108">                List&lt;Item&gt; items = itemStorage.findByIdRequest(idRequestDto);</span>
+<span class="fc" id="L109">                List&lt;ItemRequestDto.ItemAnswerDto&gt; newItemList =</span>
+<span class="fc" id="L110">                        RequestMapper.itemRequestDtoWithAnswer(requestDto, items);</span>
+<span class="fc" id="L111">                requestDto.setItems(newItemList);</span>
+<span class="fc" id="L112">                requestDtosWithAnswer.add(requestDto);</span>
+            }
+<span class="fc" id="L114">        }</span>
+<span class="fc" id="L115">        return requestDtosWithAnswer;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

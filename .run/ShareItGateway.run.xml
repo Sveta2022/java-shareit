@@ -12,4 +12,12 @@
       <option name="Make" enabled="true" />
     </method>
   </configuration>
+  <configuration default="false" name="ShareItGateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="test" />
+    <module name="shareit-gateway" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="ru.practicum.shareit.ShareItGateway" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
 </component>

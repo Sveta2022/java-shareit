@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ItemRequestController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ShareIt Server</a> &gt; <a href="index.source.html" class="el_package">ru.practicum.shareit.request</a> &gt; <span class="el_source">ItemRequestController.java</span></div><h1>ItemRequestController.java</h1><pre class="source lang-java linenums">package ru.practicum.shareit.request;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.request.dto.ItemRequestDto;
+import ru.practicum.shareit.request.service.RequestService;
+
+
+import java.util.List;
+
+@RestController
+@RequestMapping(path = &quot;/requests&quot;)
+<span class="fc" id="L15">@Slf4j</span>
+@RequiredArgsConstructor
+public class ItemRequestController {
+   private RequestService service;
+
+    @Autowired
+<span class="fc" id="L21">    public ItemRequestController(RequestService service) {</span>
+<span class="fc" id="L22">        this.service = service;</span>
+<span class="fc" id="L23">    }</span>
+
+    @PostMapping
+    public ItemRequestDto create(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                                 @RequestBody ItemRequestDto itemRequestDto) {
+<span class="nc" id="L28">        log.info(&quot;Запрос на создание запроса для пользователя &quot; + userId + &quot; создан&quot;);</span>
+<span class="nc" id="L29">        return service.create(userId, itemRequestDto);</span>
+    }
+
+    @GetMapping
+    public List&lt;ItemRequestDto&gt; getAllOwnRequests(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId) {
+<span class="nc" id="L34">        log.info(&quot;Запрос на получение запроса для пользователя c ответом &quot; + userId + &quot; создан&quot;);</span>
+<span class="nc" id="L35">        return service.getAll(userId);</span>
+    }
+
+    @GetMapping(&quot;/{requestId}&quot;)
+    public ItemRequestDto getById(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                                  @PathVariable Long requestId) {
+<span class="nc" id="L41">        log.info(&quot;Запрос на получение запроса по id &quot; + requestId + &quot; для пользователя &quot; + userId + &quot; создан&quot;);</span>
+<span class="nc" id="L42">        return service.getById(userId, requestId);</span>
+    }
+
+    @GetMapping(&quot;/all&quot;)
+    public List&lt;ItemRequestDto&gt; getAllByPage(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                                             @RequestParam(name = &quot;from&quot;, defaultValue = &quot;0&quot;) int from,
+                                             @RequestParam(name = &quot;size&quot;, defaultValue = &quot;10&quot;) int size) {
+<span class="nc" id="L49">        log.info(&quot;Запрос на получение постраничного запроса для пользователя &quot; + userId + &quot; создан&quot;);</span>
+<span class="nc" id="L50">        return service.getAllByPage(userId, from, size);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

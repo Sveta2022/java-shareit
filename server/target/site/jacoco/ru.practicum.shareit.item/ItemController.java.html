@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ItemController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ShareIt Server</a> &gt; <a href="index.source.html" class="el_package">ru.practicum.shareit.item</a> &gt; <span class="el_source">ItemController.java</span></div><h1>ItemController.java</h1><pre class="source lang-java linenums">package ru.practicum.shareit.item;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.item.dto.CommentDto;
+import ru.practicum.shareit.item.dto.ItemDto;
+import ru.practicum.shareit.item.service.ItemService;
+
+
+import java.util.List;
+
+<span class="fc" id="L14">@Slf4j</span>
+@RequiredArgsConstructor
+@RestController
+@RequestMapping(&quot;/items&quot;)
+public class ItemController {
+    private ItemService service;
+
+    @Autowired
+<span class="fc" id="L22">    public ItemController(ItemService service) {</span>
+<span class="fc" id="L23">        this.service = service;</span>
+<span class="fc" id="L24">    }</span>
+
+    @PostMapping
+    public ItemDto create(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                          @RequestBody ItemDto itemDto) {
+<span class="fc" id="L29">        log.info(&quot;Запрос на создание вещи для пользователя &quot; + userId + &quot; создан&quot;);</span>
+<span class="fc" id="L30">        return service.create(userId, itemDto);</span>
+    }
+
+    @PatchMapping(&quot;/{id}&quot;)
+    public ItemDto update(@RequestBody ItemDto itemDto,
+                          @PathVariable long id,
+                          @RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId) {
+<span class="fc" id="L37">        log.info(&quot;Запрос на обновление вещи с id &quot; + id + &quot; создан&quot;);</span>
+<span class="fc" id="L38">        return service.update(id, itemDto, userId);</span>
+    }
+
+    @GetMapping
+    public List&lt;ItemDto&gt; getAll(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                                @RequestParam(name = &quot;from&quot;, defaultValue = &quot;0&quot;) int from,
+                                @RequestParam(name = &quot;size&quot;, defaultValue = &quot;10&quot;) int size) {
+<span class="fc" id="L45">        log.info(&quot;Запрос на получение списка всех вещей пользователя с id &quot; + userId + &quot; создан&quot;);</span>
+<span class="fc" id="L46">        return service.getAll(userId, from, size);</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public ItemDto getById(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long userId,
+                           @PathVariable Long id) {
+<span class="fc" id="L52">        log.info(&quot;Запрос на получение вещи по id &quot; + id + &quot; создан&quot;);</span>
+<span class="fc" id="L53">        return service.getById(userId, id);</span>
+    }
+
+    @GetMapping(&quot;/search&quot;)
+    @ResponseBody
+    public List&lt;ItemDto&gt; search(@RequestParam(name = &quot;text&quot;) String text,
+                                @RequestParam(name = &quot;from&quot;, defaultValue = &quot;0&quot;) int from,
+                                @RequestParam(name = &quot;size&quot;, defaultValue = &quot;10&quot;) int size) {
+<span class="fc" id="L61">        log.info(&quot;Запрос на поиск вещей по тексту &quot; + text + &quot; создан&quot;);</span>
+<span class="fc" id="L62">        return service.search(text, from, size);</span>
+    }
+
+    @PostMapping(&quot;/{itemId}/comment&quot;)
+    public CommentDto addComment(@RequestHeader(&quot;X-Sharer-User-Id&quot;) Long authorId,
+                                 @PathVariable Long itemId,
+                                 @RequestBody CommentDto commentDto) {
+<span class="fc" id="L69">        log.info(&quot;Запрос на создание комментария для пользователя &quot; + authorId + &quot; создан&quot;);</span>
+<span class="fc" id="L70">        return service.addComment(authorId, itemId, commentDto);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
