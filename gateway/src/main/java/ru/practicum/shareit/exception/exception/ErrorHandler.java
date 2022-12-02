@@ -1,4 +1,4 @@
-package ru.practicum.shareit.validation.exception;
+package ru.practicum.shareit.exception.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,8 @@ import ru.practicum.shareit.booking.BookingController;
 import ru.practicum.shareit.item.ItemController;
 import ru.practicum.shareit.request.ItemRequestController;
 import ru.practicum.shareit.user.UserController;
+import ru.practicum.shareit.validation.exception.NotFoundObjectException;
+import ru.practicum.shareit.validation.exception.ValidationException;
 
 import java.util.Map;
 
@@ -41,7 +43,7 @@ public class ErrorHandler {
 //    }
 
     @ExceptionHandler
-    public ResponseEntity<Map<String, String>> handleAllIlligal(final NoligalArgumentException nL) {
+    public ResponseEntity<Map<String, String>> handleAllIlligal(final IllegalArgumentException nL) {
         log.warn("500 {}", nL.getMessage(), nL);
         return new ResponseEntity<>(
                 Map.of("error", nL.getMessage()),
